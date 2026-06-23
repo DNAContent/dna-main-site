@@ -219,6 +219,8 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 const cx = () => window.innerWidth / 2;
 
 function updateCallouts() {
+  // callouts are hidden on mobile (see #callout-layer in styles) — skip the work
+  if (window.innerWidth <= 820) return;
   for (const c of callouts) {
     const on = c.def.scene === activeScene;
     if (!on) {

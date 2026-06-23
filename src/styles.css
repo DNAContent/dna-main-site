@@ -1286,6 +1286,9 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
 @media (max-width: 820px) {
   .nav__links { display: none; }
   .nav__brandfull { display: none; }
+  /* callouts are a desktop split-screen device — the helix sits off-screen on
+     mobile and their text already appears in the stats/services content below */
+  #callout-layer { display: none; }
   .block--right { justify-content: flex-start; text-align: left; }
   .block--right > * { margin-left: 0; }
   .service { justify-content: flex-start; }
