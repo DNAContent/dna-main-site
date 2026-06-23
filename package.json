@@ -1,0 +1,23 @@
+{
+  "name": "dna-website",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Digital Niche Agency — premium growth marketing site with a scroll-choreographed 3D DNA helix",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "ffmpeg-static": "^5.3.0",
+    "playwright": "^1.61.0",
+    "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18",
+    "three": "^0.170.0"
+  }
+}

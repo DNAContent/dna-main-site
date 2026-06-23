@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Niche Agency — Built to Scale</title>
+    <meta
+      name="description"
+      content="The growth infrastructure scaling brands are built on. Premium growth marketing out of Los Angeles since 2014."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ===== Layer 0: fixed full-viewport 3D canvas (pinned behind everything) ===== -->
+    <canvas id="helix-canvas" aria-hidden="true"></canvas>
+
+    <!-- ===== Layer 1: readability scrim between object and copy ===== -->
+    <div id="scrim" aria-hidden="true"></div>
+    <div id="grain" aria-hidden="true"></div>
+
+    <!-- ===== Layer 3: callout overlay (SVG connectors + labels) ===== -->
+    <div id="callout-layer" aria-hidden="true">
+      <svg id="callout-svg" preserveAspectRatio="none"></svg>
+    </div>
+
+    <!-- ===== Layer 2: content ===== -->
+    <header class="nav" id="nav">
+      <a class="nav__brand" href="#top" aria-label="Digital Niche Agency home">
+        <img class="nav__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" />
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#overview">Industries</a>
+        <a href="#about">Thought Leadership</a>
+        <a href="#footer">Contact</a>
+      </nav>
+      <a class="btn btn--sm" href="#footer">Book A Call</a>
+    </header>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section class="section section--hero" data-scene="hero" id="hero">
+        <div class="hero__inner">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__dot"></span>
+            Growth Marketing for Scaling Brands · Los Angeles · Since 2014
+          </p>
+          <h1 class="hero__title">
+            <span class="line" data-reveal>Your Brand.</span>
+            <span class="line" data-reveal>Our Engine.</span>
+            <span class="line line--accent" data-reveal>Built to Scale.</span>
+          </h1>
+          <p class="hero__lede" data-reveal>
+            The growth infrastructure scaling brands are built on.
+          </p>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--lg" href="#footer">Book A Call</a>
+            <a class="btn btn--ghost btn--lg" href="#services">See the Engine</a>
+          </div>
+        </div>
+        <div class="scroll-cue" data-reveal>
+          <span>Scroll</span>
+          <span class="scroll-cue__line"></span>
+        </div>
+      </section>
+
+      <!-- ============ OVERVIEW / STATS ============ -->
+      <section class="section section--overview" data-scene="overview" id="overview">
+        <div class="block block--left">
+          <p class="kicker">DNA Overview</p>
+          <h2 class="display">
+            We Engineer<br />the <em>Impossible</em>
+          </h2>
+          <p class="body-lg">
+            Helping brands surpass their goals. At DNA we support companies with
+            proven tactics to get the most from every marketing dollar — built on
+            data, sequenced like code.
+          </p>
+          <dl class="stats">
+            <div class="stat" data-callout="overview-0">
+              <dt class="stat__num">1M<span>+</span></dt>
+              <dd class="stat__label">Niche audience profiles</dd>
+            </div>
+            <div class="stat" data-callout="overview-1">
+              <dt class="stat__num">900<span>+</span></dt>
+              <dd class="stat__label">Brands elevated</dd>
+            </div>
+            <div class="stat">
+              <dt class="stat__num">2014</dt>
+              <dd class="stat__label">Founded in Los Angeles</dd>
+            </div>
+            <div class="stat" data-callout="overview-2">
+              <dt class="stat__num">10<span>x</span></dt>
+              <dd class="stat__label">Return-on-ad-spend goal</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============ CLIENTS ============ -->
+      <section class="section section--clients" data-scene="clients" id="clients">
+        <div class="block block--center">
+          <p class="kicker">Trusted by category leaders</p>
+          <h2 class="display display--sm">900+ Brands Elevated</h2>
+        </div>
+        <!-- marquee rows are populated from /clients/manifest.json by fx.js -->
+        <div class="marquee" data-marquee aria-label="Clients we've worked with"></div>
+      </section>
+
+      <!-- ============ SERVICES ============ -->
+      <section class="section section--services" data-scene="services" id="services">
+        <div class="block block--right">
+          <p class="kicker">Our Services</p>
+          <h2 class="display">
+            We Tell <em>Your</em> Story
+          </h2>
+          <p class="body-lg">
+            Messaging that connects with your community — engineered end to end.
+          </p>
+          <ol class="services">
+            <li class="service" data-callout="services-0">
+              <span class="service__idx">01</span>
+              <div>
+                <h3>Marketing Strategy</h3>
+                <p>Blueprint for scalable growth.</p>
+              </div>
+            </li>
+            <li class="service" data-callout="services-1">
+              <span class="service__idx">02</span>
+              <div>
+                <h3>Thought Leadership</h3>
+                <p>Build authority with content marketing.</p>
+              </div>
+            </li>
+            <li class="service" data-callout="services-2">
+              <span class="service__idx">03</span>
+              <div>
+                <h3>Advertising</h3>
+                <p>Reach your niche with paid media.</p>
+              </div>
+            </li>
+            <li class="service" data-callout="services-3">
+              <span class="service__idx">04</span>
+              <div>
+                <h3>Growth Outreach</h3>
+                <p>Expand your community and reach.</p>
+              </div>
+            </li>
+            <li class="service" data-callout="services-4">
+              <span class="service__idx">05</span>
+              <div>
+                <h3>Creative Studio</h3>
+                <p>In-house full-stack design &amp; video.</p>
+              </div>
+            </li>
+            <li class="service" data-callout="services-5">
+              <span class="service__idx">06</span>
+              <div>
+                <h3>Media Placements</h3>
+                <p>Social proof that builds credibility.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ MID CTA (showcase bloom) ============ -->
+      <section class="section section--showcase" data-scene="midcta" id="midcta">
+        <div class="block block--center showcase">
+          <h2 class="showcase__title">
+            Before You Scale,<br />You Need to Be <em>Seen.</em>
+          </h2>
+          <p class="body-lg">
+            Get the traffic you need to get noticed, backed, and built to last.
+          </p>
+          <a class="btn btn--lg" href="#footer">Let's Get Started</a>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section class="section section--about" data-scene="about" id="about">
+        <div class="block block--left">
+          <p class="kicker">About DNA</p>
+          <h2 class="display">
+            We Speak Your<br />Audience's <em>Language</em>
+          </h2>
+          <p class="body-lg">
+            Managing your marketing can feel overwhelming, so we simplified the
+            process. We're a team of strategists, creatives, and marketers with
+            deep financial insight — working as an extension of your team.
+          </p>
+          <a class="btn btn--ghost btn--lg" href="#footer">Meet the Team</a>
+        </div>
+      </section>
+
+      <!-- ============ TEAM — "Your Growth Partners" ============ -->
+      <section class="section section--team" data-scene="team" id="team">
+        <div class="block block--center">
+          <p class="kicker">Meet the Team</p>
+          <h2 class="display display--sm">Your Growth Partners</h2>
+          <ul class="team-grid" aria-label="Team">
+            <li class="person"><span class="person__photo"><img src="/team/jason-fishman.avif" alt="Jason Fishman" loading="lazy" /></span><span class="person__name">Jason Fishman</span><span class="person__role">CEO &amp; Co-Founder</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/tim-martinez.avif" alt="Tim Martinez" loading="lazy" /></span><span class="person__name">Tim Martinez</span><span class="person__role">COO &amp; Co-Founder</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/khalil-doheny.avif" alt="Khalil Doheny" loading="lazy" /></span><span class="person__name">Khalil Doheny</span><span class="person__role">Content Marketing Director</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/abby-kehr.avif" alt="Abby Kehr" loading="lazy" /></span><span class="person__name">Abby Kehr</span><span class="person__role">Account Director</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/brenden-togioka.avif" alt="Brenden Togioka" loading="lazy" /></span><span class="person__name">Brenden Togioka</span><span class="person__role">Creative Director</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/nicky-cheung.avif" alt="Nicky Cheung" loading="lazy" /></span><span class="person__name">Nicky Cheung</span><span class="person__role">Media Buyer</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/ashley-inman.avif" alt="Ashley Inman" loading="lazy" /></span><span class="person__name">Ashley Inman</span><span class="person__role">Account Manager</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/janette-cornish.avif" alt="Janette Cornish" loading="lazy" /></span><span class="person__name">Janette Cornish</span><span class="person__role">Account Manager</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/mark-laufgraben.avif" alt="Mark Laufgraben" loading="lazy" /></span><span class="person__name">Mark Laufgraben</span><span class="person__role">Copy Editor</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/jack-sweeney.avif" alt="Jack Sweeney" loading="lazy" /></span><span class="person__name">Jack Sweeney</span><span class="person__role">Graphic Designer</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/bruce-vigra.avif" alt="Bruce Vigra" loading="lazy" /></span><span class="person__name">Bruce Vigra</span><span class="person__role">Head of Strategic Partnerships</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/jazz-parker.avif" alt="Jazz Parker" loading="lazy" /></span><span class="person__name">Jazz Parker</span><span class="person__role">Sales Associate</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/alesen-jajou.avif" alt="Alesen Jajou" loading="lazy" /></span><span class="person__name">Alesen Jajou</span><span class="person__role">Billing &amp; Finance Analyst</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/ted-horton-billard.avif" alt="Ted Horton-Billard" loading="lazy" /></span><span class="person__name">Ted Horton-Billard</span><span class="person__role">General Counsel</span></li>
+            <li class="person"><span class="person__photo"><img src="/team/keith-whitworth.avif" alt="Keith Whitworth" loading="lazy" /></span><span class="person__name">Keith Whitworth</span><span class="person__role">CFO</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ TESTIMONIALS — "Why Clients Love DNA" ============ -->
+      <section class="section section--testimonials" data-scene="testimonials" id="testimonials">
+        <div class="block block--left">
+          <p class="kicker">Testimonials</p>
+          <h2 class="display">Why Clients<br />Love <em>DNA</em></h2>
+          <figure class="testi">
+            <blockquote class="testi__quote">
+              "DNA has been awesome — super responsive, and everything's been
+              well organized and executed."
+            </blockquote>
+            <figcaption class="testi__by">
+              <span class="testi__name">Jonah Goldman</span>
+              <span class="testi__title">Co-Founder &amp; Marketing Director, Plnt Burger</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ HIGHLIGHT REEL — selected work / results ============ -->
+      <section class="section section--reel" data-scene="reel" id="reel">
+        <div class="reel__head">
+          <p class="kicker">Selected Work</p>
+          <h2 class="display">The Highlight Reel</h2>
+        </div>
+        <!-- kinetic achievement marquee -->
+        <div class="reel__ticker" aria-hidden="true">
+          <div class="reel__track">
+            <span>$50M+ Raised</span><i>✶</i><span>900+ Brands Scaled</span><i>✶</i>
+            <span>10× ROAS</span><i>✶</i><span>1M+ Niche Profiles</span><i>✶</i>
+            <span>500+ Capital Raises</span><i>✶</i>
+            <span>$50M+ Raised</span><i>✶</i><span>900+ Brands Scaled</span><i>✶</i>
+            <span>10× ROAS</span><i>✶</i><span>1M+ Niche Profiles</span><i>✶</i>
+            <span>500+ Capital Raises</span><i>✶</i>
+          </div>
+        </div>
+        <!-- video showreel — bento of looping campaign clips -->
+        <div class="reel__bento" aria-label="Selected campaigns">
+          <figure class="vtile vtile--feature">
+            <video class="vtile__media" src="/reel/clip-1.mp4" poster="/reel/clip-1.jpg"
+              muted loop playsinline preload="metadata" data-reel-video></video>
+            <span class="vtile__scrim"></span>
+            <figcaption class="vtile__cap">
+              <span class="vtile__tag">Investment Crowdfunding</span>
+              <h3 class="vtile__title">Multimillion-Dollar Raise</h3>
+              <span class="vtile__metric"><strong>$12M+</strong> committed capital</span>
+            </figcaption>
+          </figure>
+          <figure class="vtile">
+            <video class="vtile__media" src="/reel/clip-2.mp4" poster="/reel/clip-2.jpg"
+              muted loop playsinline preload="metadata" data-reel-video></video>
+            <span class="vtile__scrim"></span>
+            <figcaption class="vtile__cap">
+              <span class="vtile__tag">Real Estate</span>
+              <h3 class="vtile__title">Investor Acquisition</h3>
+              <span class="vtile__metric"><strong>8.4×</strong> return on ad spend</span>
+            </figcaption>
+          </figure>
+          <figure class="vtile">
+            <video class="vtile__media" src="/reel/clip-3.mp4" poster="/reel/clip-3.jpg"
+              muted loop playsinline preload="metadata" data-reel-video></video>
+            <span class="vtile__scrim"></span>
+            <figcaption class="vtile__cap">
+              <span class="vtile__tag">Consumer Brand</span>
+              <h3 class="vtile__title">Launch to Leader</h3>
+              <span class="vtile__metric"><strong>3.1M</strong> qualified reach</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ MEDIA FEATURES — podcasts / webinars ============ -->
+      <section class="section section--media" data-scene="media" id="media">
+        <div class="block block--center">
+          <p class="kicker">Podcasts · Webinars · Conferences</p>
+          <h2 class="display display--sm">Power Up Your Progress</h2>
+          <p class="body-lg body-lg--center">
+            Industry leaders share how they grew to scale — what to test, what to
+            optimize, and when to scale.
+          </p>
+          <ul class="media-grid" aria-label="Latest media features">
+            <li class="media-card">
+              <span class="media-card__thumb"><img src="/media/ep-1.jpg" alt="" loading="lazy" /><span class="media-card__play"></span></span>
+              <span class="media-card__tag">Ep. 21</span>
+              <h3>Raising Millions Online: How Investor Marketing Actually Works</h3>
+            </li>
+            <li class="media-card">
+              <span class="media-card__thumb"><img src="/media/ep-2.jpg" alt="" loading="lazy" /><span class="media-card__play"></span></span>
+              <span class="media-card__tag">Ep. 239</span>
+              <h3>Jeff Coleman — One Messaging Change Lifted Conversions 7%</h3>
+            </li>
+            <li class="media-card">
+              <span class="media-card__thumb"><img src="/media/ep-3.jpg" alt="" loading="lazy" /><span class="media-card__play"></span></span>
+              <span class="media-card__tag">Ep. 238</span>
+              <h3>Jack Hoss — How Real Estate Investors Use AI to Flip Houses</h3>
+            </li>
+            <li class="media-card">
+              <span class="media-card__thumb"><img src="/media/ep-4.jpg" alt="" loading="lazy" /><span class="media-card__play"></span></span>
+              <span class="media-card__tag">Webinar</span>
+              <h3>What a Multimillion-Dollar Crowdfunding Strategy Looks Like</h3>
+            </li>
+            <li class="media-card">
+              <span class="media-card__thumb"><img src="/media/ep-5.jpg" alt="" loading="lazy" /><span class="media-card__play"></span></span>
+              <span class="media-card__tag">Ep. 237</span>
+              <h3>Kevin Cahill — Daily Actions to Grow Your Real Estate Business</h3>
+            </li>
+            <li class="media-card">
+              <span class="media-card__thumb"><img src="/media/ep-6.jpg" alt="" loading="lazy" /><span class="media-card__play"></span></span>
+              <span class="media-card__tag">Talk</span>
+              <h3>What Most Founders Get Wrong About Raising Capital</h3>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ INSIGHTS — recent blog articles ============ -->
+      <section class="section section--insights" data-scene="insights" id="insights">
+        <div class="block block--center">
+          <p class="kicker">Recent Blog Articles</p>
+          <h2 class="display display--sm">Insights Straight<br />From the Team</h2>
+          <p class="body-lg body-lg--center">
+            From scaling your budget to landing-page optimization — learn how to
+            sharpen your marketing and bring awareness to your brand.
+          </p>
+          <ul class="blog-grid" aria-label="Recent articles">
+            <li class="blog-card">
+              <span class="blog-card__tag">Strategy</span>
+              <h3>What a Multimillion-Dollar Investment Crowdfunding Strategy Actually Looks Like</h3>
+              <span class="blog-card__more">Read article →</span>
+            </li>
+            <li class="blog-card">
+              <span class="blog-card__tag">Content</span>
+              <h3>The Podcast Guesting Strategy for Founders: One Episode, 20 Assets, 60 Days</h3>
+              <span class="blog-card__more">Read article →</span>
+            </li>
+            <li class="blog-card">
+              <span class="blog-card__tag">Growth</span>
+              <h3>Traffic Is Easy. Conviction Is Not.</h3>
+              <span class="blog-card__more">Read article →</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ FINAL CTA — "Your Business Matters" ============ -->
+      <section class="section section--showcase section--finalcta" data-scene="finalcta" id="finalcta">
+        <div class="block block--center showcase">
+          <p class="kicker">Let's build your engine</p>
+          <h2 class="showcase__title">
+            Your Business Matters.<br />Get <em>Eyes</em> On It.
+          </h2>
+          <p class="body-lg body-lg--center">
+            Get in touch to discover how DNA can propel your advertising, content,
+            and outreach — today.
+          </p>
+          <a class="btn btn--lg" href="mailto:hello@digitalnicheagency.com">Let's Get Started</a>
+        </div>
+      </section>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="section section--footer" data-scene="footer" id="footer">
+        <div class="footer__cta">
+          <h2 class="display display--xl">Built to Scale.</h2>
+        </div>
+        <div class="footer__meta">
+          <img class="footer__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" />
+          <nav class="footer__links" aria-label="Footer">
+            <a href="#services">Services</a>
+            <a href="#overview">Industries</a>
+            <a href="#about">Thought Leadership</a>
+            <a href="#footer">Contact</a>
+          </nav>
+          <p class="footer__legal">
+            © 2014–2026 Digital Niche Agency · Los Angeles, CA
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
