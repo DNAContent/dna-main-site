@@ -274,6 +274,14 @@ main { position: relative; z-index: 2; }
   opacity: 0; visibility: hidden; pointer-events: none;
   transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
 }
+/* transparent bridge across the gap so the dropdown survives the mouse
+   travelling from the "Services" link down onto the panel */
+.nav__menu::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: -1rem; height: 1rem;
+}
 .nav__item--menu:hover .nav__menu,
 .nav__item--menu:focus-within .nav__menu {
   opacity: 1; visibility: visible; pointer-events: auto;
@@ -1416,6 +1424,7 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
     background: none; border: 0; box-shadow: none;
   }
   .nav__menu a { padding: 0.35rem 0; font-size: 0.82rem; }
+  .nav__menu::before { display: none; }
   /* callouts are a desktop split-screen device — the helix sits off-screen on
      mobile and their text already appears in the stats/services content below */
   #callout-layer { display: none; }
