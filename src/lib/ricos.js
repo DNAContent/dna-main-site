@@ -5,7 +5,18 @@
 // =========================================================================
 
 export function escapeHtml(s = '') {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// Allow only safe URL schemes — blocks javascript:/data: etc. from Wix content.
+export function safeUrl(url = '') {
+  const u = String(url).trim();
+  return /^(https?:\/\/|mailto:|tel:|\/|#)/i.test(u) ? u : '';
+}
+
+// Strip anything that isn't a valid Wix media id (prevents attribute/path injection).
+function safeMediaId(id = '') {
+  return /^[\w.~/-]+$/.test(id) ? id : '';
 }
 
 function wixStatic(path, w, h) {
@@ -17,23 +28,23 @@ function wixStatic(path, w, h) {
 export function coverUrl(post, w = 800, h = 500) {
   const m = post && (post.media || post.coverMedia);
   if (!m) return '';
-  if (m.embedMedia?.thumbnail?.url) return m.embedMedia.thumbnail.url;
+  if (m.embedMedia?.thumbnail?.url) return safeUrl(m.embedMedia.thumbnail.url);
 
   const img = m.wixMedia?.image ?? m.image ?? null;
   if (typeof img === 'string') {
     const mm = img.match(/wix:image:\/\/v1\/([^/]+)/);
-    if (mm) return wixStatic(mm[1], w, h);
-    if (img.startsWith('http')) return img;
+    if (mm && safeMediaId(mm[1])) return wixStatic(mm[1], w, h);
+    if (img.startsWith('http')) return safeUrl(img);
   } else if (img && typeof img === 'object') {
     if (img.url && img.url.startsWith('http')) {
       return img.url.includes('static.wixstatic.com')
         ? `${img.url}/v1/fill/w_${w},h_${h},al_c,q_85/file.jpg`
-        : img.url;
+        : safeUrl(img.url);
     }
     const id = img.id || '';
     const mm = id.match(/wix:image:\/\/v1\/([^/]+)/);
-    if (mm) return wixStatic(mm[1], w, h);
-    if (id) return wixStatic(id, w, h);
+    if (mm && safeMediaId(mm[1])) return wixStatic(mm[1], w, h);
+    if (safeMediaId(id)) return wixStatic(id, w, h);
   }
   return '';
 }
@@ -62,8 +73,9 @@ function renderTextNodes(nodes = []) {
       if (dec.type === 'BOLD') t = `<strong>${t}</strong>`;
       else if (dec.type === 'ITALIC') t = `<em>${t}</em>`;
       else if (dec.type === 'UNDERLINE') t = `<u>${t}</u>`;
-      else if (dec.type === 'LINK' && dec.linkData?.link?.url) {
-        t = `<a href="${escapeHtml(dec.linkData.link.url)}" target="_blank" rel="noopener">${t}</a>`;
+      else if (dec.type === 'LINK') {
+        const url = safeUrl(dec.linkData?.link?.url || '');
+        if (url) t = `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${t}</a>`;
       }
     }
     return t;
@@ -86,10 +98,10 @@ function renderNode(node) {
     case 'BLOCKQUOTE': return `<blockquote>${(node.nodes || []).map(renderNode).join('')}</blockquote>`;
     case 'DIVIDER': return '<hr />';
     case 'IMAGE': {
-      const id = node.imageData?.image?.src?.id;
+      const id = safeMediaId(node.imageData?.image?.src?.id || '');
       if (!id) return '';
       const alt = escapeHtml(node.imageData?.altText || '');
-      return `<figure><img src="https://static.wixstatic.com/media/${id}" alt="${alt}" loading="lazy" /></figure>`;
+      return `<figure><img src="https://static.wixstatic.com/media/${escapeHtml(id)}" alt="${alt}" loading="lazy" /></figure>`;
     }
     case 'VIDEO': {
       const m = JSON.stringify(node).match(/(?:youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/);
@@ -97,7 +109,8 @@ function renderNode(node) {
       return '';
     }
     case 'CAPTION': return '';
-    case 'CODE_BLOCK': return `<pre><code>${renderTextNodes(node.nodes)}</code></pre>`;
+    case 'CODE_BLOCK':
+      return `<pre><code>${(node.nodes || []).map((n) => escapeHtml(n.textData?.text || '')).join('')}</code></pre>`;
     default: return (node.nodes || []).map(renderNode).join('');
   }
 }

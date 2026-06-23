@@ -44,6 +44,8 @@ export function splitReveal() {
   );
 
   heads.forEach((h) => {
+    if (h.classList.contains('split')) return;       // don't re-split
+    if (h.querySelector('a')) return;                // preserve headings with links
     const inners = [];
     const frag = document.createDocumentFragment();
 
@@ -217,17 +219,22 @@ export function countUp() {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
         io.unobserve(e.target);
-        const tn = e.target.firstChild; // leading text node, e.g. "900" / "1M"
+        const tn = e.target.firstChild; // leading text node, e.g. "900" / "1M" / "1.5M" / "9-Figure"
         if (!tn || tn.nodeType !== 3) return;
-        const m = tn.textContent.trim().match(/^(\d+)(.*)$/);
+        const m = tn.textContent.trim().match(/^(\D*)([\d.,]+)(.*)$/);
         if (!m) return;
-        const target = +m[1], rest = m[2];
-        if (reduce) { tn.textContent = target + rest; return; }
+        const [, prefix, numStr, suffix] = m;
+        const target = parseFloat(numStr.replace(/,/g, ''));
+        if (isNaN(target)) return;
+        const decimals = (numStr.split('.')[1] || '').length;
+        const hasComma = numStr.includes(',');
+        const fmt = (v) => {
+          const n = decimals ? v.toFixed(decimals) : String(Math.round(v));
+          return prefix + (hasComma ? Number(n).toLocaleString('en-US') : n) + suffix;
+        };
+        if (reduce) { tn.textContent = fmt(target); return; }
         const o = { v: 0 };
-        gsap.to(o, {
-          v: target, duration: 1.4, ease: 'power2.out',
-          onUpdate: () => (tn.textContent = Math.round(o.v) + rest),
-        });
+        gsap.to(o, { v: target, duration: 1.4, ease: 'power2.out', onUpdate: () => (tn.textContent = fmt(o.v)) });
       });
     },
     { threshold: 0.6 }
@@ -291,13 +298,27 @@ export function navMenu() {
   const nav = document.getElementById('nav');
   const toggle = nav && nav.querySelector('.nav__toggle');
   if (!toggle) return;
-  const close = () => { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
-  toggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
+  const close = () => {
+    nav.classList.remove('is-open');
+    document.body.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+  const open = () => {
+    nav.classList.add('is-open');
+    document.body.classList.add('nav-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    const first = nav.querySelector('.nav__links a');
+    if (first) first.focus();
+  };
+  toggle.addEventListener('click', () => (nav.classList.contains('is-open') ? close() : open()));
   nav.querySelectorAll('.nav__links a').forEach((a) => a.addEventListener('click', close));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) { close(); toggle.focus(); }
+  });
+  // click outside the nav closes the open menu
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('is-open') && !nav.contains(e.target)) close();
+  });
 }
 
 export function initFx() {

@@ -109,6 +109,7 @@ if (reduce) {
 
 // ------------------------------- scroll-reading: words brighten on scroll ----
 document.querySelectorAll('[data-scroll-text]').forEach((el) => {
+  if (el.children.length) return; // only split plain-text blocks (preserve inner markup)
   const words = el.textContent.trim().split(/\s+/);
   el.textContent = '';
   const spans = words.map((w) => {
@@ -173,24 +174,42 @@ if (timeline && !reduce) {
 // ------------------------------------------------------- contact form ----
 const cf = document.getElementById('contactForm');
 if (cf) {
-  const note = (t) => {
-    const n = document.getElementById('formNote');
-    if (n) { n.hidden = false; n.textContent = t; }
+  const noteEl = document.getElementById('formNote');
+  const note = (t, isError) => {
+    if (!noteEl) return;
+    noteEl.hidden = false;
+    noteEl.textContent = t;
+    noteEl.setAttribute('role', isError ? 'alert' : 'status');
   };
-  cf.addEventListener('submit', (e) => {
+  const required = ['firstName', 'lastName', 'email', 'company'];
+  cf.addEventListener('submit', async (e) => {
     e.preventDefault();
     const d = new FormData(cf);
-    const f = (k) => (d.get(k) || '').toString().trim();
-    if (!f('firstName') || !f('lastName') || !f('email') || !f('company')) {
-      note('Please fill in the required fields (name, email, company).');
-      return;
+    const val = (k) => (d.get(k) || '').toString().trim();
+    if (val('bot-field')) return; // honeypot tripped — silently drop
+
+    cf.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+    let firstBad = null;
+    for (const k of required) {
+      if (!val(k)) { const el = cf.querySelector(`[name="${k}"]`); if (el) { el.setAttribute('aria-invalid', 'true'); firstBad = firstBad || el; } }
     }
-    const subject = encodeURIComponent(`New inquiry from ${f('firstName')} ${f('lastName')}`);
-    const body = encodeURIComponent(
-      `Name: ${f('firstName')} ${f('lastName')}\nEmail: ${f('email')}\nPhone: ${f('phone')}\nCompany: ${f('company')}\n\n${f('message')}`
-    );
-    window.location.href = `mailto:content@digitalnicheagency.com?subject=${subject}&body=${body}`;
-    note('Thanks — your email client should open. Prefer to talk? Call 310.496.5880.');
+    const email = val('email');
+    if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      const el = cf.querySelector('[name="email"]'); if (el) { el.setAttribute('aria-invalid', 'true'); firstBad = firstBad || el; }
+    }
+    if (firstBad) { note('Please complete the required fields with a valid email address.', true); firstBad.focus(); return; }
+
+    try {
+      const body = new URLSearchParams();
+      for (const [k, v] of d.entries()) body.append(k, v);
+      const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
+      if (!res.ok) throw new Error('status ' + res.status);
+      cf.reset();
+      note("Thanks — we've got it. We'll be in touch shortly.", false);
+    } catch (err) {
+      console.warn('[contact] submit failed:', err);
+      note('Something went wrong. Email content@digitalnicheagency.com or call 310.496.5880.', true);
+    }
   });
 }
 
@@ -217,7 +236,7 @@ if (blogList || blogIndex || (blogPost && !postPrerendered)) {
       const href = `/blog/${p.slug || ''}`;
       const cover = wix.coverUrl(p);
       const thumb = cover
-        ? `<span class="bcard__thumb" style="background-image:url('${cover}')"></span>`
+        ? `<span class="bcard__thumb" style="background-image:url('${cover.replace(/["')\\]/g, '')}')"></span>`
         : `<span class="bcard__thumb"><span class="bcard__mark">DNA</span></span>`;
       return `<a class="bcard" href="${href}">${thumb}<span class="bcard__body">` +
         `<span class="bcard__meta">${esc(wix.formatDate(p)) || 'Article'}</span>` +
@@ -242,17 +261,18 @@ if (blogList || blogIndex || (blogPost && !postPrerendered)) {
     }
 
     if (blogPost && !postPrerendered) {
-      const slug =
+      let slug =
         (location.pathname.match(/\/blog\/([^/]+)/) || [])[1] ||
         new URLSearchParams(location.search).get('slug');
-      const post = slug ? await wix.getPostBySlug(decodeURIComponent(slug)) : null;
+      try { slug = slug ? decodeURIComponent(slug) : slug; } catch { /* malformed URL — use raw */ }
+      const post = slug ? await wix.getPostBySlug(slug) : null;
       if (post) {
         document.title = `${post.title} — Digital Niche Agency`;
         const cover = wix.coverUrl(post, 1600, 900);
         blogPost.innerHTML =
           `<p class="kicker">${esc(wix.formatDate(post)) || 'Article'}</p>` +
           `<h1 class="post__title">${esc(post.title || '')}</h1>` +
-          (cover ? `<div class="post__cover"><img src="${cover}" alt="" /></div>` : '') +
+          (cover ? `<div class="post__cover"><img src="${esc(cover)}" alt="" /></div>` : '') +
           `<div class="post__body">${wix.richContentToHtml(post)}</div>`;
       } else {
         blogPost.innerHTML =

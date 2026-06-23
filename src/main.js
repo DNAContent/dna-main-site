@@ -17,7 +17,20 @@ gsap.registerPlugin(ScrollTrigger);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ----------------------------------------------------------------- helix ----
-const helix = new Helix(document.getElementById('helix-canvas'));
+// Guard WebGL: if the renderer can't be created (no WebGL, GPU blocklist), fall
+// back to a no-op stub so the rest of the page (scroll, reveals, nav) still boots
+// instead of the whole module aborting and leaving the intro overlay stuck.
+let helix;
+try {
+  helix = new Helix(document.getElementById('helix-canvas'));
+} catch (err) {
+  console.warn('[helix] 3D background unavailable, continuing without it:', err);
+  helix = {
+    current: {}, target: {}, spinBoost: 0,
+    render() {}, addSpin() {}, flash() {}, setAssemble() {},
+    anchorToScreen() { return null; },
+  };
+}
 
 // ------------------------------------------------------- smooth scrolling ----
 const lenis = new Lenis({
@@ -191,8 +204,7 @@ if (reduceMotion) {
 // ------------------------------------------------- nav auto-hide ----
 const nav = document.getElementById('nav');
 lenis.on('scroll', ({ scroll, direction, velocity }) => {
-  if (scroll > 240 && direction === 1) nav.classList.add('is-hidden');
-  else nav.classList.remove('is-hidden');
+  if (nav) nav.classList.toggle('is-hidden', scroll > 240 && direction === 1);
   // scroll momentum spins the strand — fast flicks whip it, slow drags ease it
   helix.addSpin((velocity || 0) * 0.0016);
   if (progressBar) progressBar.style.transform = `scaleX(${pageProgress()})`;
@@ -207,8 +219,8 @@ function pageProgress() {
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href');
-    if (id.length < 2) return;
-    const target = document.querySelector(id);
+    if (!id || id.length < 2) return;
+    const target = document.getElementById(id.slice(1));
     if (!target) return;
     e.preventDefault();
     lenis.scrollTo(target, { offset: 0 });
@@ -276,6 +288,13 @@ function finishIntro() {
   // make sure the hero's masked reveals play now, after the wipe
   document.querySelectorAll('.section--hero .split').forEach((h) => h.classList.add('is-revealed'));
   document.querySelectorAll('.section--hero [data-reveal]').forEach((el) => el.classList.add('is-in'));
+
+  // honor an incoming hash (e.g. arriving at "/#services" from a subpage) with
+  // a smooth Lenis scroll once the intro has handed over control
+  if (location.hash && location.hash.length > 1) {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target) requestAnimationFrame(() => lenis.scrollTo(target, { offset: 0, immediate: reduceMotion }));
+  }
 }
 
 function buildIntroOverlay() {

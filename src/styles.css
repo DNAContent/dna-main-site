@@ -7,8 +7,8 @@
   --bg:        #09090a;
   --bg-soft:   #111113;
   --ink:       #f4f1ec;
-  --ink-dim:   rgba(244, 241, 236, 0.62);
-  --ink-faint: rgba(244, 241, 236, 0.34);
+  --ink-dim:   rgba(244, 241, 236, 0.72);
+  --ink-faint: rgba(244, 241, 236, 0.5);
   --red:       #e0102b;
   --red-hot:   #ff2942;
   --red-deep:  #6b0414;
@@ -44,6 +44,20 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
 a { color: inherit; text-decoration: none; }
+
+/* visible keyboard focus everywhere (mouse focus stays clean via :focus-visible) */
+:focus-visible { outline: 2px solid var(--red-hot); outline-offset: 3px; border-radius: 2px; }
+.field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--red-hot); outline-offset: 2px; }
+
+/* skip-to-content link (first focusable element on the page) */
+.skip-link {
+  position: fixed; top: -120px; left: 1rem; z-index: 1000;
+  background: var(--red); color: #fff; font-weight: 700;
+  font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.7rem 1.1rem; border-radius: 4px;
+  transition: top 0.2s var(--ease);
+}
+.skip-link:focus { top: 1rem; }
 
 /* =========================================================================
    Layer stack
@@ -512,6 +526,9 @@ main { position: relative; z-index: 2; }
 .service:last-child { border-bottom: 1px solid var(--hair); }
 /* linked service rows (lead to a dedicated service page) */
 .service__link { display: contents; }
+/* whole-card links (home media + insights) without disturbing the grid/flex layout */
+.card-link { display: contents; }
+.media-card, .blog-card { cursor: pointer; }
 .service--link h3, .service--link p { cursor: pointer; }
 .service--link h3 { transition: color 0.3s var(--ease); }
 .service--link:hover h3 { color: var(--red); }
@@ -866,7 +883,8 @@ main { position: relative; z-index: 2; }
   font-family: var(--font-display);
   font-size: clamp(14rem, 34vw, 42rem);
   line-height: 0.8;
-  color: transparent;
+  color: rgba(244, 241, 236, 0.05);
+  -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px rgba(244, 241, 236, 0.09);
   pointer-events: none;
   user-select: none;
@@ -1411,6 +1429,7 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
     z-index: -1;
   }
   .nav.is-open .nav__links { transform: translateY(0); }
+  body.nav-open { overflow: hidden; }
   .nav__links a { font-size: 0.95rem; }
   .nav__item--menu { width: 100%; }
   .nav__caret { display: none; }
@@ -1484,4 +1503,11 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal], .block { opacity: 1 !important; transform: none !important; }
   .eyebrow__dot, .scroll-cue__line { animation: none; }
+  /* stop all continuous auto-motion (WCAG 2.2.2) */
+  .marquee__row, .marquee__row--a, .marquee__row--b,
+  .reel__ticker, .ticker__row, .word__i.is-em, .flash {
+    animation: none !important;
+  }
+  .svc-strand svg { animation: none !important; }
+  * { scroll-behavior: auto !important; }
 }

@@ -22,6 +22,7 @@ export default defineConfig({
         contact: resolve(__dirname, 'contact.html'),
         blog: resolve(__dirname, 'blog.html'),
         post: resolve(__dirname, 'post.html'),
+        notfound: resolve(__dirname, '404.html'),
       },
     },
   },

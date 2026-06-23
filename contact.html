@@ -11,8 +11,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#09090a" />
+    <link rel="canonical" href="https://digitalnicheagency.com/contact" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact — Digital Niche Agency" />
+    <meta property="og:description" content="Let's chat about your goals. Get in touch with Digital Niche Agency — Marina del Rey, CA. Office line 310.496.5880." />
+    <meta property="og:url" content="https://digitalnicheagency.com/contact" />
+    <meta property="og:image" content="https://digitalnicheagency.com/dna-logo-white.avif" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Contact — Digital Niche Agency" />
+    <meta name="twitter:description" content="Let's chat about your goals. Get in touch with Digital Niche Agency — Marina del Rey, CA. Office line 310.496.5880." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Digital Niche Agency","url":"https://digitalnicheagency.com","logo":"https://digitalnicheagency.com/dna-logo-white.avif","telephone":"+1-310-496-5880","address":{"@type":"PostalAddress","streetAddress":"475 Washington Blvd.","addressLocality":"Marina del Rey","addressRegion":"CA","postalCode":"90292","addressCountry":"US"},"sameAs":["https://www.instagram.com/digitalnicheagency","https://www.facebook.com/digitalnicheagency","https://twitter.com/DNAgency_CA","https://www.linkedin.com/company/digital-niche-agency","https://www.youtube.com/@digitalnicheagency"]}</script>
   </head>
-  <body>
+  <body class="contact-page">
+    <a class="skip-link" href="#top">Skip to content</a>
     <div class="svc-strand" aria-hidden="true"></div>
     <div class="svc-wash" aria-hidden="true"></div>
     <div id="grain" aria-hidden="true"></div>
@@ -26,7 +39,7 @@
       </button>
       <nav class="nav__links" aria-label="Primary">
         <div class="nav__item nav__item--menu">
-          <a class="nav__top" href="/#services">Services <span class="nav__caret" aria-hidden="true"></span></a>
+          <a class="nav__top" href="/#services" aria-haspopup="true" aria-expanded="false">Services <span class="nav__caret" aria-hidden="true"></span></a>
           <div class="nav__menu">
             <a href="/strategy">Marketing Strategy</a>
             <a href="/advertising">Advertising</a>
@@ -42,7 +55,7 @@
       <a class="btn btn--sm" href="/contact">Book A Call</a>
     </header>
 
-    <main class="svc-main" id="top">
+    <main class="svc-main" id="top" tabindex="-1">
       <section class="svc-section" id="contact" style="padding-top: 19vh">
         <div class="block">
           <p class="kicker">Contact Us</p>
@@ -79,7 +92,9 @@
               </div>
             </div>
 
-            <form class="cform" id="contactForm" novalidate>
+            <form class="cform" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <input type="hidden" name="form-name" value="contact" />
+              <p hidden><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
               <div class="field">
                 <label for="fn">First name *</label>
                 <input id="fn" name="firstName" autocomplete="given-name" required />

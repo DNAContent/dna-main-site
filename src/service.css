@@ -11,7 +11,8 @@
   font-size: clamp(8rem, 20vw, 18rem);
   line-height: 0.8;
   letter-spacing: -0.02em;
-  color: transparent;
+  color: rgba(224, 16, 43, 0.22);
+  -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1.5px rgba(224, 16, 43, 0.5);
   text-stroke: 1.5px rgba(224, 16, 43, 0.5);
   will-change: transform;
@@ -93,7 +94,8 @@
   position: absolute;
   top: 1.5rem; right: 1.7rem;
   font-family: var(--font-display);
-  color: transparent;
+  color: rgba(224, 16, 43, 0.22);
+  -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px rgba(224, 16, 43, 0.4);
   font-size: 2.4rem;
 }
@@ -178,7 +180,7 @@
   transition: background 0.4s var(--ease);
 }
 .ind:hover { background: rgba(9, 9, 10, 0.45); }
-.ind__n { position: absolute; top: 1.7rem; left: 2.4rem; font-family: var(--font-display); color: transparent; -webkit-text-stroke: 1px rgba(224, 16, 43, 0.45); font-size: 3rem; }
+.ind__n { position: absolute; top: 1.7rem; left: 2.4rem; font-family: var(--font-display); color: rgba(224, 16, 43, 0.22); -webkit-text-fill-color: transparent; -webkit-text-stroke: 1px rgba(224, 16, 43, 0.45); font-size: 3rem; }
 .ind__name { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 0.95; margin-bottom: 0.8rem; }
 .ind__name em { color: var(--red); font-style: normal; }
 .ind__desc { color: var(--ink-dim); line-height: 1.6; max-width: 42ch; }
@@ -187,7 +189,7 @@
 .post { max-width: 768px; margin: 0 auto; }
 .post__title { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.95; margin: 0.6rem 0 0; }
 .post__cover { margin: 2.2rem 0 2.6rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--hair); }
-.post__cover img { width: 100%; display: block; }
+.post__cover img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: cover; }
 .post__body { font-size: 1.1rem; line-height: 1.8; color: var(--ink-dim); }
 .post__body > * + * { margin-top: 1.35rem; }
 .post__body h2, .post__body h3, .post__body h4 { font-family: var(--font-display); text-transform: uppercase; color: var(--ink); line-height: 1; margin-top: 2.6rem; }
@@ -231,7 +233,24 @@
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--red); background: rgba(255, 255, 255, 0.05); }
 .field textarea { min-height: 140px; resize: vertical; }
 .cform__submit { grid-column: 1 / -1; }
-.cform__note { grid-column: 1 / -1; font-size: 0.8rem; color: var(--ink-faint); }
+.cform__note { grid-column: 1 / -1; font-size: 0.85rem; color: var(--ink); }
+
+/* contact: the form reads as a glass panel sitting ON TOP of a more-present
+   DNA helix strand on the right */
+.contact-page .svc-strand { opacity: 0.8; right: -1vw; width: 26vw; }
+.contact-page .cform {
+  background: rgba(9, 9, 10, 0.6);
+  border: 1px solid var(--hair);
+  border-radius: 14px;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 900px) {
+  .contact-page .svc-strand { opacity: 0.28; right: -10vw; width: 38vw; }
+  .contact-page .cform { padding: 1.4rem; }
+}
 
 /* ---- generated double-helix strand (fixed, faint, behind content) ---- */
 .svc-strand {
@@ -361,7 +380,7 @@
 }
 
 /* ---- scroll-reading effect: words brighten as the line scrolls through ---- */
-.stw { opacity: 0.16; display: inline-block; will-change: opacity; }
+.stw { opacity: 0.3; display: inline-block; will-change: opacity; }
 
 /* ---- image reveal: clip + settle on scroll-in ---- */
 [data-img] img, .adrow__img {
@@ -402,6 +421,8 @@
   width: 100%;
   max-width: 420px;
   height: auto;
+  aspect-ratio: 5 / 6;        /* reserve space → no layout shift on load */
+  object-fit: cover;
   display: block;
   border-radius: 14px;
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55));
@@ -449,7 +470,8 @@
   font-family: var(--font-display);
   font-size: clamp(6rem, 13vw, 12rem);
   line-height: 0.8;
-  color: transparent;
+  color: rgba(224, 16, 43, 0.22);
+  -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1.5px rgba(224, 16, 43, 0.5);
   text-stroke: 1.5px rgba(224, 16, 43, 0.5);
   z-index: 0;
