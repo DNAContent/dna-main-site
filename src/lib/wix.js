@@ -18,7 +18,9 @@
 import { createClient, OAuthStrategy } from '@wix/sdk';
 import { posts } from '@wix/blog';
 
-const clientId = import.meta.env.VITE_WIX_CLIENT_ID;
+// Publishable Wix Headless "Visitor" OAuth client id — safe to ship in the
+// browser bundle. Override per-environment with VITE_WIX_CLIENT_ID in .env.
+const clientId = import.meta.env.VITE_WIX_CLIENT_ID || 'a8fcb08b-2408-463e-8e1e-9718035094bc';
 export const wixEnabled = Boolean(clientId);
 
 const client = wixEnabled
@@ -41,8 +43,13 @@ export async function listPosts(limit = 12) {
 export async function getPostBySlug(slug) {
   if (!client || !slug) return null;
   try {
-    const res = await client.posts.getPostBySlug(slug, { fieldsets: ['RICH_CONTENT'] });
-    return res.post || null;
+    // queryPosts (not getPostBySlug) — the slugs endpoint is CORS-blocked in
+    // the browser, but the query endpoint is allowed.
+    const res = await client.posts
+      .queryPosts({ fieldsets: ['RICH_CONTENT'] })
+      .eq('slug', slug)
+      .find();
+    return res.items?.[0] || null;
   } catch (e) {
     console.warn('[wix] getPostBySlug failed:', e);
     return null;
@@ -51,25 +58,32 @@ export async function getPostBySlug(slug) {
 
 // ---- helpers -------------------------------------------------------------
 
-// Resolve a usable image URL from a Wix Blog post's cover media (best-effort
-// across the shapes the API returns).
+// Resolve a usable image URL from a Wix Blog post's cover media. Handles the
+// three shapes seen on this site: embedded-video thumbnails (YouTube), a
+// `wix:image://` string, and image objects.
+function wixStatic(path, w, h) {
+  return `https://static.wixstatic.com/media/${path}/v1/fill/w_${w},h_${h},al_c,q_85/file.jpg`;
+}
 export function coverUrl(post, w = 800, h = 500) {
   const m = post && (post.media || post.coverMedia);
-  const img = m && (m.wixMedia?.image || m.image || m);
-  let url = img?.url || img?.src?.url || '';
-  const id = img?.id || (typeof img === 'string' ? img : '');
-  if (!url && id && id.startsWith('wix:image')) {
-    // wix:image://v1/<mediaId>/<filename>#...
-    const mediaId = id.replace('wix:image://v1/', '').split('~')[0].split('/')[0];
-    url = `https://static.wixstatic.com/media/${mediaId}`;
-  } else if (!url && id) {
-    url = `https://static.wixstatic.com/media/${id}`;
+  if (!m) return '';
+  if (m.embedMedia?.thumbnail?.url) return m.embedMedia.thumbnail.url; // YouTube etc.
+
+  const img = m.wixMedia?.image ?? m.image ?? null;
+  if (typeof img === 'string') {
+    const mm = img.match(/wix:image:\/\/v1\/([^/]+)/);
+    if (mm) return wixStatic(mm[1], w, h);
+    if (img.startsWith('http')) return img;
+  } else if (img && typeof img === 'object') {
+    if (img.url && img.url.startsWith('http')) {
+      return img.url.includes('static.wixstatic.com') ? `${img.url}/v1/fill/w_${w},h_${h},al_c,q_85/file.jpg` : img.url;
+    }
+    const id = img.id || '';
+    const mm = id.match(/wix:image:\/\/v1\/([^/]+)/);
+    if (mm) return wixStatic(mm[1], w, h);
+    if (id) return wixStatic(id, w, h);
   }
-  if (url && url.includes('static.wixstatic.com')) {
-    // request a sized, cropped render
-    return `${url}/v1/fill/w_${w},h_${h},al_c,q_85/file.jpg`;
-  }
-  return url || '';
+  return '';
 }
 
 export function formatDate(post) {
@@ -133,6 +147,13 @@ function renderNode(node) {
       const alt = escapeHtml(node.imageData?.altText || '');
       return `<figure><img src="${url}" alt="${alt}" loading="lazy" /></figure>`;
     }
+    case 'VIDEO': {
+      const m = JSON.stringify(node).match(/(?:youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/);
+      if (m) return `<figure class="post__embed"><iframe src="https://www.youtube.com/embed/${m[1]}" title="Video" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></figure>`;
+      return '';
+    }
+    case 'CAPTION':
+      return ''; // captions are rendered inline by their parent where wanted
     case 'CODE_BLOCK':
       return `<pre><code>${renderTextNodes(node.nodes)}</code></pre>`;
     default:
