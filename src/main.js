@@ -360,3 +360,22 @@ function runIntro() {
 document.body.classList.add('is-intro');
 initFx();
 runIntro();
+
+// hydrate the home "Recent Blog Articles" with live Wix posts — falls back to
+// the static placeholders if no client id is set or the fetch fails
+const blogHome = document.querySelector('[data-blog-home]');
+if (blogHome) {
+  const esc = (s = '') => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  import('./lib/wix.js').then(async (wix) => {
+    if (!wix.wixEnabled) return;
+    const n = parseInt(blogHome.dataset.blogHome, 10) || 3;
+    const items = await wix.listPosts(n);
+    if (!items || !items.length) return;
+    blogHome.innerHTML = items.map((p) =>
+      `<li class="blog-card"><a class="card-link" href="/blog/${p.slug || ''}">` +
+      `<span class="blog-card__tag">${esc(wix.formatDate(p)) || 'Article'}</span>` +
+      `<h3>${esc(p.title || '')}</h3>` +
+      `<span class="blog-card__more">Read article &rarr;</span></a></li>`
+    ).join('');
+  }).catch((e) => console.warn('[home blog] hydration failed:', e));
+}
