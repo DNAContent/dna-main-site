@@ -23,6 +23,8 @@ export default defineConfig({
         blog: resolve(__dirname, 'blog.html'),
         post: resolve(__dirname, 'post.html'),
         notfound: resolve(__dirname, '404.html'),
+        terms: resolve(__dirname, 'terms.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
       },
     },
   },
