@@ -268,7 +268,7 @@ main { position: relative; z-index: 2; }
   transform: rotate(45deg); margin-top: -3px; opacity: 0.75;
   transition: transform 0.3s var(--ease), margin-top 0.3s var(--ease);
 }
-.nav__item--menu { position: relative; }
+.nav__item--menu { position: relative; display: flex; align-items: center; }
 .nav__item--menu:hover .nav__caret,
 .nav__item--menu:focus-within .nav__caret { transform: rotate(-135deg); margin-top: 2px; }
 .nav__menu {
