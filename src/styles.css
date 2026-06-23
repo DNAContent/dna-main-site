@@ -1446,7 +1446,8 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
   .nav.is-open .nav__links { transform: translateY(0); }
   body.nav-open { overflow: hidden; }
   .nav__links a { font-size: 0.95rem; }
-  .nav__item--menu { width: 100%; }
+  /* stack the submenu below "Services" on mobile (desktop uses flex-row centering) */
+  .nav__item--menu { width: 100%; display: block; }
   .nav__caret { display: none; }
   .nav__menu {
     position: static;
@@ -1459,6 +1460,10 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
   }
   .nav__menu a { padding: 0.35rem 0; font-size: 0.82rem; }
   .nav__menu::before { display: none; }
+  /* the desktop hover/focus rule (higher specificity) sets translateX(-50%),
+     which shoves the static full-width mobile menu off-screen — neutralize it */
+  .nav__item--menu:hover .nav__menu,
+  .nav__item--menu:focus-within .nav__menu { transform: none; }
   /* callouts are a desktop split-screen device — the helix sits off-screen on
      mobile and their text already appears in the stats/services content below */
   #callout-layer { display: none; }
