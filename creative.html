@@ -1,160 +1,1160 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script>document.documentElement.classList.add("js")</script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative Studio — Digital Niche Agency</title>
-    <meta
-      name="description"
-      content="Creative design that turns vision into validation. Landing pages, pitch decks, websites, pitch videos, social, and branding — in-house and full-stack."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet" />
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#09090a" />
-    <link rel="canonical" href="https://digitalnicheagency.com/creative" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Creative Studio — Digital Niche Agency" />
-    <meta property="og:description" content="Creative design that turns vision into validation. Landing pages, pitch decks, websites, pitch videos, social, and branding — in-house and full-stack." />
-    <meta property="og:url" content="https://digitalnicheagency.com/creative" />
-    <meta property="og:image" content="https://digitalnicheagency.com/dna-logo-white.avif" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Creative Studio — Digital Niche Agency" />
-    <meta name="twitter:description" content="Creative design that turns vision into validation. Landing pages, pitch decks, websites, pitch videos, social, and branding — in-house and full-stack." />
-  </head>
-  <body>
-    <a class="skip-link" href="#top">Skip to content</a>
-    <div class="svc-strand" aria-hidden="true"></div>
-    <div class="svc-wash" aria-hidden="true"></div>
-    <div id="grain" aria-hidden="true"></div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DNA Creative Lab — Creative Built to Perform</title>
+<meta name="description" content="The in-house creative studio of Digital Niche Agency. Landing pages, websites, pitch decks, company videos and paid-media creative — designed inside a growth team, built to convert." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#09090a" />
+<link rel="canonical" href="https://digitalnicheagency.com/creative" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="DNA Creative Lab — Creative Built to Perform" />
+<meta property="og:description" content="The in-house creative studio of Digital Niche Agency. Landing pages, websites, pitch decks, company videos and paid-media creative — built to convert." />
+<meta property="og:url" content="https://digitalnicheagency.com/creative" />
+<meta property="og:image" content="https://digitalnicheagency.com/creative/skin.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+/* =========================================================================
+   DNA CREATIVE LAB — cinematic portfolio
+   League Gothic (display) · Arial (body) · near-black + crimson scalpel
+   Visual-dominant. Work first.
+   ========================================================================= */
+:root{
+  --bg:#09090a;
+  --bg-soft:#111113;
+  --bg-card:#131315;
+  --ink:#f4f1ec;
+  --ink-dim:rgba(244,241,236,0.62);
+  --ink-faint:rgba(244,241,236,0.34);
+  --red:#e0102b;
+  --red-hot:#ff2942;
+  --red-deep:#6b0414;
+  --hair:rgba(244,241,236,0.12);
+  --hair-soft:rgba(244,241,236,0.07);
+  --maxw:1320px;
+  --gutter:clamp(1.25rem,4vw,4rem);
+  --font-display:'League Gothic','Arial Narrow',sans-serif;
+  --font-body:Arial,'Helvetica Neue',Helvetica,sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+html.lenis,html.lenis body{height:auto;}
+.lenis.lenis-smooth{scroll-behavior:auto !important;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+button{font-family:inherit;}
 
-    <header class="nav" id="nav">
-      <a class="nav__brand" href="/" aria-label="Digital Niche Agency home">
-        <img class="nav__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" />
-      </a>
-      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav__links" aria-label="Primary">
-        <div class="nav__item nav__item--menu">
-          <a class="nav__top" href="/#services" aria-haspopup="true" aria-expanded="false">Services <span class="nav__caret" aria-hidden="true"></span></a>
-          <div class="nav__menu">
-            <a href="/strategy">Marketing Strategy</a>
-            <a href="/advertising">Advertising</a>
-            <a href="/content-marketing">Content Marketing</a>
-            <a href="/outreach">Growth Outreach</a>
-            <a href="/creative">Creative Studio</a>
-          </div>
+/* ===== Layer stack ===== */
+#bg-canvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;pointer-events:none;}
+#scrim{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(125% 95% at 50% 45%,transparent 38%,rgba(9,9,10,0.62) 100%);
+}
+#grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+main{position:relative;z-index:2;}
+
+/* ===== Typography primitives ===== */
+.display{
+  font-family:var(--font-display);font-weight:400;text-transform:uppercase;
+  line-height:0.86;letter-spacing:0.01em;font-size:clamp(3.5rem,9vw,8.5rem);
+}
+.display--sm{font-size:clamp(2.6rem,6vw,5rem);}
+.display--xl{font-size:clamp(5rem,18vw,16rem);line-height:0.8;}
+.display em{font-style:normal;color:var(--red);}
+.kicker{
+  font-family:var(--font-body);text-transform:uppercase;letter-spacing:0.32em;
+  font-size:0.72rem;font-weight:700;color:var(--ink-dim);margin-bottom:1.4rem;display:inline-block;
+}
+.kicker::before{
+  content:"";display:inline-block;width:26px;height:1px;background:var(--red);
+  vertical-align:middle;margin-right:0.8rem;margin-bottom:3px;
+}
+.body-lg{font-size:clamp(1rem,1.3vw,1.18rem);line-height:1.65;color:var(--ink-dim);max-width:46ch;margin-top:1.6rem;}
+.body-lg em{color:var(--ink);font-style:normal;}
+.center .body-lg{margin-left:auto;margin-right:auto;}
+
+/* ===== Buttons ===== */
+.btn{
+  --pad-y:0.95rem;--pad-x:1.9rem;
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-family:var(--font-body);font-weight:700;font-size:0.82rem;letter-spacing:0.16em;
+  text-transform:uppercase;padding:var(--pad-y) var(--pad-x);
+  background:var(--red);color:#fff;border:1px solid var(--red);border-radius:2px;
+  position:relative;overflow:hidden;cursor:pointer;isolation:isolate;
+  transition:color 0.4s var(--ease),transform 0.3s var(--ease);
+}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform 0.45s var(--ease);z-index:-1;}
+.btn:hover{color:var(--bg);transform:translateY(-2px);}
+.btn:hover::before{transform:translateY(0);}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--hair);}
+.btn--ghost::before{background:var(--red);}
+.btn--ghost:hover{color:#fff;border-color:var(--red);}
+.btn--lg{--pad-y:1.15rem;--pad-x:2.4rem;font-size:0.85rem;}
+.btn--sm{--pad-y:0.62rem;--pad-x:1.2rem;font-size:0.7rem;}
+.btn:focus-visible{outline:2px solid var(--red-hot);outline-offset:3px;}
+
+/* ===== Nav ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:30;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem var(--gutter);mix-blend-mode:difference;
+  transition:transform 0.5s var(--ease);
+}
+.nav.is-hidden{transform:translateY(-115%);}
+.nav__brand{display:flex;align-items:baseline;gap:0.7rem;}
+.nav__mark{font-family:var(--font-display);font-size:1.7rem;letter-spacing:0.05em;color:#fff;}
+.nav__mark span{color:var(--red);}
+.nav__brandfull{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.7);}
+.nav__links{display:flex;gap:2rem;}
+.nav__links a{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:#fff;position:relative;padding-bottom:4px;}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease);}
+.nav__links a:hover::after{transform:scaleX(1);}
+
+/* ===== Section scaffolding ===== */
+.section{position:relative;padding:14vh var(--gutter);overflow:clip;}
+.section--tall{min-height:100vh;display:flex;align-items:center;}
+.block{width:100%;max-width:var(--maxw);margin:0 auto;}
+.center{text-align:center;}
+
+/* ===== HERO ===== */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:18vh;padding-bottom:0;}
+.hero__inner{max-width:var(--maxw);margin:0 auto;width:100%;}
+.eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:1.8rem;}
+.eyebrow__dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);animation:pulse 2.4s var(--ease) infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.hero__title{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(3.4rem,12vw,12rem);line-height:0.82;letter-spacing:0.005em;}
+.hero__title .line{display:block;overflow:hidden;}
+.hero__title .line > span{display:block;}
+.hero__title .line--accent > span{
+  background:linear-gradient(100deg,var(--red) 20%,var(--red-hot) 50%,var(--red) 80%);
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:sheen 6s linear infinite;
+}
+@keyframes sheen{to{background-position:-200% 0}}
+.hero__lede{margin-top:2rem;font-size:clamp(1.05rem,1.6vw,1.35rem);color:var(--ink-dim);max-width:44ch;}
+.hero__lede em{color:var(--ink);font-style:normal;}
+.hero__actions{margin-top:2.4rem;display:flex;gap:1rem;flex-wrap:wrap;}
+
+/* hero work strip — visual-dominant marquee of work thumbnails */
+.hero__strip{margin-top:clamp(3rem,6vh,5.5rem);width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.hero__track{display:flex;gap:1.1rem;width:max-content;animation:marq-l 48s linear infinite;}
+.hero__strip:hover .hero__track{animation-play-state:paused;}
+.hthumb{position:relative;flex:none;width:clamp(220px,24vw,340px);aspect-ratio:16/10;border-radius:4px;overflow:hidden;border:1px solid var(--hair);}
+.hthumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(0.35) brightness(0.78) contrast(1.04);transition:filter 0.6s var(--ease),transform 0.9s var(--ease);}
+.hthumb:hover img{filter:none;transform:scale(1.05);}
+.hthumb__tag{position:absolute;left:0.85rem;bottom:0.75rem;z-index:2;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#fff;font-weight:700;text-shadow:0 1px 8px rgba(0,0,0,0.8);}
+.hthumb__scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,9,10,0.85),transparent 55%);}
+
+.scroll-cue{position:absolute;bottom:3vh;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.7rem;font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--ink-faint);z-index:4;}
+.scroll-cue__line{width:1px;height:46px;background:linear-gradient(var(--red),transparent);animation:drop 2s var(--ease) infinite;}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}40%{transform:scaleY(1);transform-origin:top}60%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ===== Marquee (services ticker) ===== */
+.ticker{width:100%;overflow:hidden;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:1.15rem 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.ticker__track{display:flex;align-items:center;gap:2.4rem;width:max-content;animation:marq-l 32s linear infinite;}
+.ticker__track span{font-family:var(--font-display);font-size:clamp(1.7rem,3.6vw,3rem);text-transform:uppercase;white-space:nowrap;}
+.ticker__track i{color:var(--red);font-style:normal;font-size:0.85rem;}
+@keyframes marq-l{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== Section heads ===== */
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.4rem,5vw,3.6rem);}
+.head__meta{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);max-width:30ch;}
+
+/* ===== BENTO WORK GALLERY (showpiece) ===== */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(190px,auto);gap:1rem;}
+.tile{position:relative;overflow:hidden;border:1px solid var(--hair);border-radius:5px;background:var(--bg-card);display:block;}
+.tile--xl{grid-column:span 4;grid-row:span 2;}
+.tile--lg{grid-column:span 2;grid-row:span 2;}
+.tile--md{grid-column:span 3;}
+.tile--sm{grid-column:span 2;}
+.tile--tall{grid-column:span 2;grid-row:span 2;}
+.tile__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(0.35) brightness(0.74) contrast(1.05);transition:transform 1s var(--ease),filter 0.6s var(--ease);}
+.tile:hover .tile__media{transform:scale(1.06);filter:grayscale(0) brightness(0.92);}
+.tile__scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,9,10,0.92),rgba(9,9,10,0.05) 52%,transparent);}
+.tile__cap{position:absolute;left:0;bottom:0;right:0;padding:clamp(1.1rem,2vw,1.8rem);display:flex;flex-direction:column;gap:0.4rem;z-index:2;}
+.tile__tag{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);font-weight:700;}
+.tile__title{font-family:var(--font-display);font-weight:400;text-transform:uppercase;line-height:0.98;font-size:clamp(1.5rem,2.4vw,2.4rem);}
+.tile--xl .tile__title{font-size:clamp(2.2rem,4vw,4rem);}
+.tile__metric{font-size:0.82rem;color:var(--ink-dim);margin-top:0.15rem;}
+.tile__metric strong{color:var(--ink);font-family:var(--font-display);font-size:1.3rem;letter-spacing:0.02em;}
+.tile__arrow{position:absolute;top:1.1rem;right:1.1rem;width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);display:flex;align-items:center;justify-content:center;color:var(--ink);background:rgba(9,9,10,0.35);backdrop-filter:blur(4px);opacity:0;transform:translateY(-6px);transition:opacity 0.4s var(--ease),transform 0.4s var(--ease),background 0.3s,border-color 0.3s;z-index:3;}
+.tile:hover .tile__arrow{opacity:1;transform:none;}
+.tile:hover .tile__arrow{background:var(--red);border-color:var(--red);}
+
+/* placeholder tiles (no image yet) — branded, premium */
+.tile--ph{display:flex;align-items:flex-end;background:
+  radial-gradient(120% 120% at 80% 0%,rgba(224,16,43,0.18),transparent 55%),
+  linear-gradient(155deg,var(--bg-soft),#0a0a0b 70%);}
+.tile--ph2{background:
+  radial-gradient(120% 120% at 10% 100%,rgba(224,16,43,0.22),transparent 55%),
+  linear-gradient(155deg,#15060a,#0a0a0b 75%);}
+.tile--ph .tile__ph-mark{position:absolute;top:1.2rem;left:1.4rem;font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.05em;color:var(--ink-faint);}
+.tile--ph .tile__ph-mark span{color:var(--red);}
+.tile--ph .ph-note{position:absolute;top:1.4rem;right:1.4rem;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--hair);padding:0.3rem 0.6rem;border-radius:100px;}
+.tile__grid{position:absolute;inset:0;background-image:linear-gradient(var(--hair-soft) 1px,transparent 1px),linear-gradient(90deg,var(--hair-soft) 1px,transparent 1px);background-size:42px 42px;opacity:0.5;}
+
+/* ===== REEL ===== */
+.reel{padding-left:0;padding-right:0;}
+.reel .head,.reel__foot{padding-left:var(--gutter);padding-right:var(--gutter);}
+.reel__ticker{width:100%;overflow:hidden;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:1rem 0;margin-bottom:clamp(1.5rem,3vw,2.4rem);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.reel__player{position:relative;margin:0 var(--gutter);border-radius:8px;overflow:hidden;border:1px solid var(--hair);background:#000;}
+.reel__player video{display:block;width:100%;height:auto;}
+.reel__badge{position:absolute;top:1.1rem;left:1.2rem;z-index:3;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#fff;font-weight:700;background:rgba(9,9,10,0.5);backdrop-filter:blur(6px);padding:0.45rem 0.85rem;border-radius:100px;border:1px solid var(--hair);}
+.reel__overlay{position:absolute;left:0;right:0;bottom:0;padding:clamp(1.2rem,3vw,2.2rem);background:linear-gradient(0deg,rgba(9,9,10,0.78),transparent);display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;z-index:2;}
+.reel__overlay h3{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(1.4rem,2.6vw,2.6rem);line-height:0.95;}
+.reel__overlay span{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);}
+.reel__foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);flex-wrap:wrap;}
+
+/* ===== HORIZONTAL CASE-STUDY JOURNEY ===== */
+.journey{position:relative;height:100vh;overflow:hidden;}
+.journey__track{display:flex;height:100%;will-change:transform;}
+.case{flex:none;width:100vw;height:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(2rem,5vw,5rem);padding:0 var(--gutter);}
+.case__media{position:relative;height:min(70vh,560px);border-radius:6px;overflow:hidden;border:1px solid var(--hair);}
+.case__media img{width:100%;height:100%;object-fit:cover;}
+.case__media--ph{background:radial-gradient(120% 120% at 70% 10%,rgba(224,16,43,0.2),transparent 55%),linear-gradient(150deg,var(--bg-soft),#0a0a0b);display:flex;align-items:center;justify-content:center;}
+.case__media--ph .ph-mark{font-family:var(--font-display);font-size:clamp(3rem,6vw,5rem);color:var(--ink-faint);letter-spacing:0.05em;}
+.case__media--ph .ph-mark span{color:var(--red);}
+.case__copy{max-width:520px;}
+.case__idx{font-family:var(--font-display);font-size:1.1rem;color:var(--red);letter-spacing:0.1em;}
+.case__tag{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin:0.7rem 0 1rem;}
+.case__title{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(2.6rem,5vw,5rem);line-height:0.9;}
+.case__title em{font-style:normal;color:var(--red);}
+.case__body{margin-top:1.2rem;color:var(--ink-dim);font-size:1rem;line-height:1.6;max-width:42ch;}
+.case__stats{display:flex;gap:2.4rem;margin-top:1.8rem;flex-wrap:wrap;}
+.case__stat dt{font-family:var(--font-display);font-size:clamp(2.2rem,3.4vw,3.2rem);line-height:0.9;}
+.case__stat dt span{color:var(--red);}
+.case__stat dd{font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-dim);margin-top:0.4rem;}
+.journey__progress{position:absolute;left:var(--gutter);right:var(--gutter);bottom:calc(var(--gutter) - 0.3rem);height:1px;background:var(--hair);z-index:5;}
+.journey__progress span{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--red),var(--red-hot));box-shadow:0 0 12px var(--red);}
+.journey__hint{position:absolute;top:calc(var(--gutter) + 2.5rem);left:var(--gutter);z-index:5;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center;gap:0.6rem;}
+
+/* ===== SERVICES ===== */
+.svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:5px;overflow:hidden;}
+.svc{background:var(--bg-soft);padding:2rem 1.5rem 2.2rem;position:relative;transition:background 0.4s var(--ease);min-height:300px;display:flex;flex-direction:column;}
+.svc:hover{background:#17080b;}
+.svc__idx{font-family:var(--font-display);font-size:2rem;color:rgba(224,16,43,0.5);line-height:1;margin-bottom:1.5rem;}
+.svc h3{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(1.5rem,2vw,2rem);line-height:1;margin-bottom:0.8rem;}
+.svc p{font-size:0.85rem;line-height:1.6;color:var(--ink-dim);}
+.svc__arrow{margin-top:auto;padding-top:1.4rem;color:var(--red);font-size:1.1rem;transition:transform 0.3s var(--ease);}
+.svc:hover .svc__arrow{transform:translateX(6px);}
+
+/* ===== WHY (edge) ===== */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);align-items:start;}
+.why__points{display:flex;flex-direction:column;margin-top:1.8rem;}
+.why__pt{display:flex;gap:1rem;padding:1.4rem 0;border-top:1px solid var(--hair);}
+.why__pt:last-child{border-bottom:1px solid var(--hair);}
+.why__dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);flex:none;margin-top:0.5rem;}
+.why__pt h4{font-size:0.95rem;font-weight:700;letter-spacing:0.02em;margin-bottom:0.35rem;}
+.why__pt p{font-size:0.85rem;color:var(--ink-dim);line-height:1.6;}
+.why__cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.why__card{position:relative;background:var(--bg-card);border:1px solid var(--hair);border-radius:6px;padding:1.7rem 1.5rem 2rem;overflow:hidden;transition:border-color 0.35s var(--ease),transform 0.35s var(--ease);}
+.why__card:hover{border-color:rgba(224,16,43,0.4);transform:translateY(-4px);}
+.why__card .tag{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);}
+.why__card h4{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:1.5rem;line-height:1;margin:0.9rem 0 0.6rem;}
+.why__card p{font-size:0.82rem;color:var(--ink-dim);line-height:1.6;}
+.why__card .ghost{position:absolute;right:0.6rem;bottom:-1.2rem;font-family:var(--font-display);font-size:5rem;color:rgba(224,16,43,0.08);line-height:1;pointer-events:none;}
+
+/* ===== STATS ===== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem 3rem;}
+.stat{border-top:1px solid var(--hair);padding-top:1.1rem;}
+.stat__num{font-family:var(--font-display);font-size:clamp(3rem,5.5vw,5rem);line-height:0.9;}
+.stat__num span{color:var(--red);}
+.stat__label{margin-top:0.5rem;font-size:0.74rem;letter-spacing:0.04em;color:var(--ink-dim);text-transform:uppercase;}
+
+/* ===== PROCESS ===== */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.proc::before{content:"";position:absolute;top:7px;left:6%;right:6%;height:1px;background:var(--hair);}
+.proc__step{padding-right:2rem;position:relative;}
+.proc__num{font-family:var(--font-display);font-size:0.95rem;color:var(--red);letter-spacing:0.1em;margin-bottom:1.6rem;display:flex;align-items:center;gap:0.7rem;}
+.proc__dot{width:14px;height:14px;border-radius:50%;background:var(--red);border:3px solid var(--bg);box-shadow:0 0 12px rgba(224,16,43,0.5);flex:none;transition:transform 0.3s var(--ease);}
+.proc__step:hover .proc__dot{transform:scale(1.35);}
+.proc__step h4{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:1.5rem;line-height:1;margin-bottom:0.7rem;}
+.proc__step p{font-size:0.85rem;color:var(--ink-dim);line-height:1.6;}
+
+/* ===== QUOTE ===== */
+.quote{background:var(--red);text-align:center;position:relative;overflow:hidden;}
+.quote::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120%;height:160%;background:radial-gradient(closest-side,rgba(0,0,0,0.16),transparent 70%);}
+.quote__mark{font-family:var(--font-display);font-size:6rem;line-height:0.6;color:rgba(0,0,0,0.2);position:relative;}
+.quote__text{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,5vw,4.4rem);line-height:1.02;color:#fff;max-width:18ch;margin:0 auto;position:relative;}
+.quote__by{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:1.8rem;position:relative;}
+
+/* ===== CTA ===== */
+.cta{text-align:center;position:relative;}
+.cta__title{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(3rem,9vw,8.5rem);line-height:0.88;}
+.cta__title em{font-style:normal;color:var(--red);}
+.cta .body-lg{margin-top:1.6rem;}
+.cta .btn{margin-top:2.4rem;}
+.cta__points{display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;font-size:0.74rem;letter-spacing:0.06em;color:var(--ink-dim);text-transform:uppercase;}
+.cta__points span{display:inline-flex;align-items:center;gap:0.5rem;}
+.cta__points i{width:5px;height:5px;border-radius:50%;background:var(--red);}
+
+/* ===== FOOTER ===== */
+.footer{flex-direction:column;justify-content:center;text-align:center;gap:4rem;display:flex;}
+.footer__cta h2{margin:0 auto;}
+.footer__meta{width:100%;max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-top:2.5rem;border-top:1px solid var(--hair);flex-wrap:wrap;}
+.footer__brand{font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.05em;}
+.footer__brand span{color:var(--red);}
+.footer__links{display:flex;gap:1.6rem;}
+.footer__links a{font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;}
+.footer__links a:hover{color:var(--ink);}
+.footer__legal{font-size:0.7rem;color:var(--ink-faint);letter-spacing:0.06em;}
+
+/* ===== ghost numerals ===== */
+.ghost-num{position:absolute;z-index:-1;right:clamp(0.5rem,3vw,4rem);bottom:-3vh;font-family:var(--font-display);font-size:clamp(12rem,30vw,38rem);line-height:0.8;color:transparent;-webkit-text-stroke:1px rgba(244,241,236,0.07);pointer-events:none;user-select:none;}
+
+/* ===== scroll progress ===== */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:40;background:rgba(244,241,236,0.06);pointer-events:none;}
+.progress__bar{height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--red),var(--red-hot));box-shadow:0 0 12px var(--red);}
+
+/* ===== dot-nav ===== */
+.dotnav{position:fixed;top:50%;right:clamp(0.9rem,2vw,1.6rem);transform:translateY(-50%);z-index:25;display:flex;flex-direction:column;gap:0.95rem;align-items:flex-end;}
+.dotnav__item{display:flex;align-items:center;gap:0.7rem;background:none;border:0;padding:0;cursor:pointer;}
+.dotnav__label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-dim);opacity:0;transform:translateX(6px);transition:opacity 0.35s var(--ease),transform 0.35s var(--ease);}
+.dotnav__dot{width:7px;height:7px;border-radius:50%;background:transparent;border:1px solid var(--ink-faint);transition:all 0.35s var(--ease);flex:none;}
+.dotnav__item:hover .dotnav__label{opacity:1;transform:none;}
+.dotnav__item:hover .dotnav__dot{border-color:var(--ink);}
+.dotnav__item.is-active .dotnav__dot{background:var(--red);border-color:var(--red);box-shadow:0 0 10px var(--red);transform:scale(1.25);}
+.dotnav__item.is-active .dotnav__label{opacity:1;transform:none;color:var(--ink);}
+
+/* ===== HUD ===== */
+.hud{position:fixed;left:var(--gutter);bottom:calc(var(--gutter) - 0.2rem);z-index:25;display:flex;align-items:baseline;gap:0.7rem;mix-blend-mode:difference;}
+.hud__idx{font-family:var(--font-display);font-size:1.5rem;line-height:1;color:#fff;}
+.hud__sep{width:22px;height:1px;background:var(--red);align-self:center;}
+.hud__label{font-size:0.64rem;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}
+
+/* ===== custom cursor ===== */
+@media (hover:hover) and (pointer:fine){
+  body.has-cursor,body.has-cursor a,body.has-cursor button,body.has-cursor .btn{cursor:none;}
+}
+.cursor-ring,.cursor-dot{position:fixed;top:0;left:0;z-index:50;pointer-events:none;border-radius:50%;}
+.cursor-ring{width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid rgba(244,241,236,0.5);transition:border-color 0.3s var(--ease),background 0.3s var(--ease),width 0.3s var(--ease),height 0.3s var(--ease),margin 0.3s var(--ease);}
+.cursor-ring.is-grow{border-color:var(--red);background:rgba(224,16,43,0.08);width:56px;height:56px;margin:-28px 0 0 -28px;}
+.cursor-dot{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:var(--red);}
+
+/* ===== reveal ===== */
+[data-reveal]{opacity:0;transform:translateY(30px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease);}
+[data-reveal].is-in{opacity:1;transform:none;}
+[data-reveal].d1{transition-delay:0.08s}[data-reveal].d2{transition-delay:0.16s}[data-reveal].d3{transition-delay:0.24s}[data-reveal].d4{transition-delay:0.32s}[data-reveal].d5{transition-delay:0.4s}
+
+/* ===== intro / preloader ===== */
+body.is-intro{overflow:hidden;}
+body.is-intro [data-reveal]{opacity:0 !important;transform:translateY(30px) !important;}
+body.is-intro .nav,body.is-intro .dotnav,body.is-intro .hud{opacity:0;pointer-events:none;}
+.intro{position:fixed;inset:0;z-index:60;background:radial-gradient(58% 58% at 50% 50%,rgba(9,9,10,0.4),var(--bg) 82%);display:flex;align-items:center;justify-content:center;will-change:transform;}
+.intro__center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.6rem;}
+.intro__brand{font-family:var(--font-display);font-size:clamp(5rem,16vw,15rem);line-height:0.8;letter-spacing:0.04em;color:var(--ink);text-shadow:0 0 50px rgba(9,9,10,0.9);}
+.intro__brand span{color:var(--red);}
+.intro__sub{font-size:0.72rem;letter-spacing:0.42em;text-transform:uppercase;color:var(--ink-dim);}
+.intro__foot{position:absolute;left:var(--gutter);bottom:calc(var(--gutter) + 1.2rem);display:flex;align-items:baseline;gap:1rem;}
+.intro__count{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);line-height:0.8;color:var(--red);}
+.intro__label{font-size:0.66rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-faint);}
+.intro__track{position:absolute;left:var(--gutter);right:var(--gutter);bottom:var(--gutter);height:1px;background:var(--hair);}
+.intro__bar{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--red),var(--red-hot));box-shadow:0 0 10px var(--red);}
+
+/* ===== MODAL ===== */
+.modal{position:fixed;inset:0;background:rgba(6,6,8,0.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.35s var(--ease);}
+.modal.open{opacity:1;pointer-events:all;}
+.modal__card{background:var(--bg-soft);border:1px solid var(--hair);border-radius:10px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;padding:44px 48px;position:relative;transform:translateY(24px) scale(0.98);transition:transform 0.4s var(--ease);scrollbar-width:none;}
+.modal__card::-webkit-scrollbar{display:none;}
+.modal.open .modal__card{transform:none;}
+.modal__close{position:absolute;top:20px;right:22px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--hair);color:var(--ink-dim);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s;}
+.modal__close:hover{background:rgba(255,255,255,0.1);color:var(--ink);}
+.modal__bar{height:2px;background:linear-gradient(90deg,var(--red),var(--red-hot),var(--red));background-size:200% 100%;animation:sheen 3s linear infinite;border-radius:2px;margin-bottom:30px;}
+.modal__eyebrow{font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:12px;}
+.modal__title{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,4vw,3rem);line-height:0.96;margin-bottom:10px;}
+.modal__title span{color:var(--ink-dim);}
+.modal__sub{font-size:0.88rem;color:var(--ink-dim);line-height:1.7;margin-bottom:30px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.fg label{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-faint);}
+.fg input,.fg textarea,.fg select{background:rgba(255,255,255,0.04);border:1px solid var(--hair);border-radius:4px;color:var(--ink);font-family:var(--font-body);font-size:0.9rem;padding:12px 14px;outline:none;transition:border-color 0.25s,background 0.25s;width:100%;-webkit-appearance:none;appearance:none;}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='rgba(244,241,236,0.3)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer;}
+.fg select option{background:var(--bg-soft);color:var(--ink);}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(244,241,236,0.2);}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:rgba(224,16,43,0.5);background:rgba(255,255,255,0.06);}
+.fg textarea{resize:vertical;min-height:90px;line-height:1.6;}
+.form-submit{width:100%;justify-content:center;margin-top:8px;}
+.form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:40px 0;}
+.success-icon{width:54px;height:54px;border-radius:50%;background:rgba(224,16,43,0.12);border:1px solid rgba(224,16,43,0.3);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--red);margin-bottom:20px;}
+.success-title{font-family:var(--font-display);font-size:2.2rem;text-transform:uppercase;margin-bottom:10px;}
+.success-body{font-size:0.88rem;color:var(--ink-dim);line-height:1.7;max-width:320px;}
+
+/* ===== responsive ===== */
+@media (max-width:1000px){
+  .bento{grid-template-columns:repeat(4,1fr);}
+  .tile--xl{grid-column:span 4;}
+  .tile--lg,.tile--tall{grid-column:span 2;}
+  .tile--md{grid-column:span 4;}
+  .tile--sm{grid-column:span 2;}
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .why{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .proc{grid-template-columns:1fr 1fr;row-gap:2.5rem;}
+  .proc::before{display:none;}
+  .case{grid-template-columns:1fr;align-content:center;gap:1.5rem;padding-top:14vh;}
+  .case__media{height:34vh;order:-1;}
+}
+@media (max-width:640px){
+  .nav__links,.nav__brandfull{display:none;}
+  .dotnav{display:none;}
+  .bento{grid-template-columns:repeat(2,1fr);}
+  .tile--xl,.tile--md{grid-column:span 2;}
+  .tile--lg,.tile--tall,.tile--sm{grid-column:span 1;grid-row:span 1;}
+  .why__cards{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .modal__card{padding:32px 26px;}
+  .form-row{grid-template-columns:1fr;}
+  .case__stats{gap:1.4rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;}
+  [data-reveal]{opacity:1 !important;transform:none !important;}
+  .hero__track,.ticker__track,.reel__track{animation:none !important;}
+}
+</style>
+</head>
+<body class="is-intro">
+
+<!-- ambient background canvas (2D DNA strand + dust) -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div id="scrim" aria-hidden="true"></div>
+<div id="grain" aria-hidden="true"></div>
+
+<!-- Netlify hidden form for bot detection -->
+<form name="creative-lab-contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="first_name" />
+  <input type="text" name="last_name" />
+  <input type="email" name="email" />
+  <input type="text" name="company" />
+  <select name="service"></select>
+  <textarea name="message"></textarea>
+</form>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal__card" id="modalCard">
+    <button class="modal__close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div class="modal__bar"></div>
+    <div class="modal__eyebrow">Start a Project</div>
+    <h2 class="modal__title">Let's talk.<br><span>Tell us what you're building.</span></h2>
+    <p class="modal__sub">We'll reach out within 24 hours to schedule your founder interview. No intake forms, no account managers — just a real conversation.</p>
+    <form name="creative-lab-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+      <input type="hidden" name="form-name" value="creative-lab-contact" />
+      <p style="display:none;"><input name="bot-field" /></p>
+      <div class="form-row">
+        <div class="fg"><label for="first_name">First Name *</label><input type="text" id="first_name" name="first_name" placeholder="Jane" autocomplete="given-name" required /></div>
+        <div class="fg"><label for="last_name">Last Name</label><input type="text" id="last_name" name="last_name" placeholder="Doe" autocomplete="family-name" /></div>
+      </div>
+      <div class="fg"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="jane@company.com" autocomplete="email" required /></div>
+      <div class="fg"><label for="company">Company</label><input type="text" id="company" name="company" placeholder="Company name" autocomplete="organization" /></div>
+      <div class="fg"><label for="service">What do you need?</label>
+        <select id="service" name="service">
+          <option value="" disabled selected>Select a service</option>
+          <option>Landing &amp; Offering Page</option>
+          <option>Website</option>
+          <option>Pitch Deck</option>
+          <option>Company Video</option>
+          <option>Paid Media Creatives</option>
+          <option>Multiple Services</option>
+          <option>Not sure yet — let's talk</option>
+        </select>
+      </div>
+      <div class="fg"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="What's the project? What are you trying to accomplish?" rows="4"></textarea></div>
+      <button type="submit" class="btn form-submit">Send it →</button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">✓</div>
+      <div class="success-title">We got it.</div>
+      <p class="success-body">Expect a message from us within 24 hours to schedule your founder interview.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="DNA Creative Lab home">
+    <span class="nav__mark">D<span>N</span>A</span>
+    <span class="nav__brandfull">Creative Lab</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#work">Work</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="/" class="nav__home">Digital Niche Agency ↗</a>
+  </nav>
+  <button class="btn btn--sm" onclick="openModal()">Start a Project</button>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" data-scene="hero" id="hero">
+    <div class="hero__inner">
+      <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>A Digital Niche Agency Studio · Est. 2014</p>
+      <h1 class="hero__title">
+        <span class="line" data-reveal><span>We Don't</span></span>
+        <span class="line d1" data-reveal><span>Deliver Files.</span></span>
+        <span class="line line--accent" data-reveal><span>We Deliver Outcomes.</span></span>
+      </h1>
+      <p class="hero__lede d2" data-reveal>Creative built inside a growth team means every asset <em>already knows its job</em> — the channel, the audience, the metric it moves. Design without that context is decoration.</p>
+      <div class="hero__actions d3" data-reveal>
+        <button class="btn btn--lg" onclick="openModal()">Start a Project</button>
+        <a class="btn btn--ghost btn--lg" href="#work">See the Work</a>
+      </div>
+    </div>
+
+    <!-- visual-dominant work strip -->
+    <div class="hero__strip d4" data-reveal aria-label="Selected work">
+      <div class="hero__track" id="heroTrack">
+        <a class="hthumb" href="#cases"><div class="tile__scrim" style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,9,10,0.85),transparent 55%);z-index:1;"></div><img src="/creative/skin.png" alt="Skinbit investor campaign creative" /><span class="hthumb__tag">Skinbit · Paid Media</span></a>
+        <a class="hthumb" href="#cases"><span class="hthumb__scrim"></span><img src="/creative/mode.png" alt="Mode Mobile paid social creative" /><span class="hthumb__tag">Mode Mobile · Meta</span></a>
+        <a class="hthumb" href="#cases"><span class="hthumb__scrim"></span><img src="/creative/zero.png" alt="ZeroCarb Lyfe company pitch video" /><span class="hthumb__tag">ZeroCarb · Video</span></a>
+        <span class="hthumb tile--ph" style="display:flex;"><span class="tile__grid"></span><span class="hthumb__tag">Your Brand · Landing Page</span></span>
+        <!-- duplicate set for seamless loop -->
+        <a class="hthumb" href="#cases"><span class="hthumb__scrim"></span><img src="/creative/skin.png" alt="" aria-hidden="true" /><span class="hthumb__tag">Skinbit · Paid Media</span></a>
+        <a class="hthumb" href="#cases"><span class="hthumb__scrim"></span><img src="/creative/mode.png" alt="" aria-hidden="true" /><span class="hthumb__tag">Mode Mobile · Meta</span></a>
+        <a class="hthumb" href="#cases"><span class="hthumb__scrim"></span><img src="/creative/zero.png" alt="" aria-hidden="true" /><span class="hthumb__tag">ZeroCarb · Video</span></a>
+        <span class="hthumb tile--ph" style="display:flex;"><span class="tile__grid"></span><span class="hthumb__tag">Your Brand · Landing Page</span></span>
+      </div>
+    </div>
+    <div class="scroll-cue" data-reveal><span>Scroll</span><span class="scroll-cue__line"></span></div>
+  </section>
+
+  <!-- ============ SERVICES TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Landing Pages</span><i>✶</i><span>Websites</span><i>✶</i><span>Pitch Decks</span><i>✶</i><span>Company Videos</span><i>✶</i><span>Paid Media</span><i>✶</i>
+      <span>Landing Pages</span><i>✶</i><span>Websites</span><i>✶</i><span>Pitch Decks</span><i>✶</i><span>Company Videos</span><i>✶</i><span>Paid Media</span><i>✶</i>
+    </div>
+  </div>
+
+  <!-- ============ WORK — BENTO GALLERY (showpiece) ============ -->
+  <section class="section" data-scene="work" id="work">
+    <div class="block">
+      <div class="head">
+        <div data-reveal>
+          <p class="kicker">Selected Work</p>
+          <h2 class="display">The Work<br><em>Speaks First.</em></h2>
         </div>
-        <a href="/industries">Industries</a>
-        <a href="/thought-leadership">Thought Leadership</a>
-        <a href="/contact">Contact</a>
+        <p class="head__meta d1" data-reveal>Campaigns, sites, decks and films built inside a growth team — and measured by what they moved.</p>
+      </div>
+
+      <div class="bento">
+        <a class="tile tile--xl" href="#cases" data-reveal>
+          <img class="tile__media" src="/creative/skin.png" alt="Skinbit — investor acquisition campaign creative" />
+          <span class="tile__scrim"></span>
+          <span class="tile__arrow">↗</span>
+          <span class="tile__cap">
+            <span class="tile__tag">Skinbit · Paid Media + Landing</span>
+            <span class="tile__title">$2.3M Raised<br>On Wefunder</span>
+            <span class="tile__metric"><strong>+214%</strong> conversion rate on cold traffic</span>
+          </span>
+        </a>
+
+        <a class="tile tile--lg d1" href="#cases" data-reveal>
+          <img class="tile__media" src="/creative/mode.png" alt="Mode Mobile — paid social creative" />
+          <span class="tile__scrim"></span>
+          <span class="tile__arrow">↗</span>
+          <span class="tile__cap">
+            <span class="tile__tag">Mode Mobile · Meta</span>
+            <span class="tile__title">The Next<br>Revolution</span>
+            <span class="tile__metric"><strong>3.8×</strong> return on ad spend</span>
+          </span>
+        </a>
+
+        <a class="tile tile--md d2" href="#cases" data-reveal>
+          <img class="tile__media" src="/creative/zero.png" alt="ZeroCarb Lyfe — company pitch video" />
+          <span class="tile__scrim"></span>
+          <span class="tile__arrow">↗</span>
+          <span class="tile__cap">
+            <span class="tile__tag">ZeroCarb Lyfe · Company Video</span>
+            <span class="tile__title">Founder-Led Pitch Film</span>
+            <span class="tile__metric"><strong>Funded</strong> — full in-person production</span>
+          </span>
+        </a>
+
+        <span class="tile tile--sm tile--ph d3" data-reveal>
+          <span class="tile__grid"></span>
+          <span class="tile__ph-mark">D<span>N</span>A</span>
+          <span class="ph-note">Add work</span>
+          <span class="tile__cap">
+            <span class="tile__tag">Website</span>
+            <span class="tile__title">Your Project Here</span>
+            <span class="tile__metric">Drop a screenshot into <code style="color:var(--ink-dim)">/images</code></span>
+          </span>
+        </span>
+
+        <span class="tile tile--sm tile--ph tile--ph2 d4" data-reveal>
+          <span class="tile__grid"></span>
+          <span class="tile__ph-mark">D<span>N</span>A</span>
+          <span class="ph-note">Add work</span>
+          <span class="tile__cap">
+            <span class="tile__tag">Pitch Deck</span>
+            <span class="tile__title">Your Project Here</span>
+            <span class="tile__metric">Swap in a real case anytime</span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HIGHLIGHT REEL ============ -->
+  <section class="section reel" data-scene="reel" id="reel">
+    <div class="head">
+      <div data-reveal>
+        <p class="kicker">Highlight Reel</p>
+        <h2 class="display display--sm">The Work<br><em>In Motion.</em></h2>
+      </div>
+      <p class="head__meta d1" data-reveal>Landing pages, websites, pitch decks, company videos and paid media — one reel.</p>
+    </div>
+
+    <div class="reel__ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>$2.3M Raised</span><i>✶</i><span>+214% CVR</span><i>✶</i><span>3.8× ROAS</span><i>✶</i><span>Funded</span><i>✶</i><span>Built To Perform</span><i>✶</i>
+        <span>$2.3M Raised</span><i>✶</i><span>+214% CVR</span><i>✶</i><span>3.8× ROAS</span><i>✶</i><span>Funded</span><i>✶</i><span>Built To Perform</span><i>✶</i>
+      </div>
+    </div>
+
+    <div class="reel__player" data-reveal>
+      <span class="reel__badge">Showreel · 2:34</span>
+      <video src="/creative/splash.webm" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="reel__overlay">
+        <h3>Selected Campaigns</h3>
+        <span>Replace with your full reel embed</span>
+      </div>
+    </div>
+    <div class="reel__foot">
+      <span>Landing pages · Websites · Pitch decks · Company videos · Paid media</span>
+      <span>DNA Creative Lab</span>
+    </div>
+  </section>
+
+  <!-- ============ CASE STUDIES — HORIZONTAL JOURNEY ============ -->
+  <section class="journey" data-scene="cases" id="cases" aria-label="Case studies">
+    <div class="journey__hint" aria-hidden="true"><span class="eyebrow__dot"></span>Scroll · Case Studies</div>
+    <div class="journey__track" id="journeyTrack">
+
+      <article class="case">
+        <div class="case__media"><img src="/creative/skin.png" alt="Skinbit investor acquisition campaign" /></div>
+        <div class="case__copy">
+          <div class="case__idx">01 / 03</div>
+          <p class="case__tag">Skinbit · Investment Crowdfunding</p>
+          <h2 class="case__title">Now Live On <em>Wefunder.</em></h2>
+          <p class="case__body">A full paid-media creative system plus a conversion-built offering page, designed to turn cold scrollers into early investors — every asset tied to the raise.</p>
+          <dl class="case__stats">
+            <div class="case__stat"><dt>$2.3<span>M</span></dt><dd>Raised from 550+ investors</dd></div>
+            <div class="case__stat"><dt>+214<span>%</span></dt><dd>Conversion rate lift</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case__media"><img src="/creative/mode.png" alt="Mode Mobile paid social campaign" /></div>
+        <div class="case__copy">
+          <div class="case__idx">02 / 03</div>
+          <p class="case__tag">Mode Mobile · Paid Social</p>
+          <h2 class="case__title">The Next <em>Revolution.</em></h2>
+          <p class="case__body">A platform-native Meta creative set — built for the feed, the budget, and the conversion goal. Variants engineered to stop the scroll and earn the click.</p>
+          <dl class="case__stats">
+            <div class="case__stat"><dt>3.8<span>×</span></dt><dd>Return on ad spend</dd></div>
+            <div class="case__stat"><dt>6<span>+</span></dt><dd>Creative variants tested</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case__media"><img src="/creative/zero.png" alt="ZeroCarb Lyfe founder pitch video" /></div>
+        <div class="case__copy">
+          <div class="case__idx">03 / 03</div>
+          <p class="case__tag">ZeroCarb Lyfe · Company Video</p>
+          <h2 class="case__title">Your Story. <em>Shot Right.</em></h2>
+          <p class="case__body">Script-first, founder-led. Our team handled the on-site shoot, b-roll, motion graphics and edit — one narrative built to raise capital and land the room.</p>
+          <dl class="case__stats">
+            <div class="case__stat"><dt>Funded</dt><dd>Capital raise closed</dd></div>
+            <div class="case__stat"><dt>1<span>mo</span></dt><dd>Concept to delivery</dd></div>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+    <div class="journey__progress" aria-hidden="true"><span id="journeyBar"></span></div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section" data-scene="services" id="services">
+    <div class="block">
+      <div class="head">
+        <div data-reveal>
+          <p class="kicker">What We Make</p>
+          <h2 class="display">Five Ways We<br><em>Move the Needle.</em></h2>
+        </div>
+        <p class="head__meta d1" data-reveal>One studio, one standard. Every discipline built to convert — not to impress a design jury.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc" data-reveal><div class="svc__idx">01</div><h3>Landing &amp; Offering Pages</h3><p>One page. One job. Built to convert cold traffic into action.</p><div class="svc__arrow">→</div></div>
+        <div class="svc d1" data-reveal><div class="svc__idx">02</div><h3>Websites</h3><p>Your site does sales calls while you sleep. We build them to close.</p><div class="svc__arrow">→</div></div>
+        <div class="svc d2" data-reveal><div class="svc__idx">03</div><h3>Pitch Decks</h3><p>You have a deck. We make it the one the room remembers.</p><div class="svc__arrow">→</div></div>
+        <div class="svc d3" data-reveal><div class="svc__idx">04</div><h3>Company Videos</h3><p>Concept to delivery. The fastest way to make someone feel your brand.</p><div class="svc__arrow">→</div></div>
+        <div class="svc d4" data-reveal><div class="svc__idx">05</div><h3>Paid Media</h3><p>Stop the scroll. Built for the platform, the budget, the conversion rate.</p><div class="svc__arrow">→</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY / EDGE ============ -->
+  <section class="section" data-scene="why" id="why">
+    <div class="block why">
+      <div>
+        <div data-reveal>
+          <p class="kicker">Why It Works Here</p>
+          <h2 class="display display--sm">Design That Knows<br><em>The Numbers.</em></h2>
+        </div>
+        <p class="body-lg d1" data-reveal>Most design shops work from a brief. We work from your data. Creative Lab sits inside the same team running your media, tracking your metrics, and watching what actually converts. <em>That changes everything about how we design.</em></p>
+        <div class="why__points">
+          <div class="why__pt d2" data-reveal><span class="why__dot"></span><div><h4>No context lost in handoffs</h4><p>Strategy, creative and media under one roof. The left hand always knows what the right is doing.</p></div></div>
+          <div class="why__pt d3" data-reveal><span class="why__dot"></span><div><h4>Performance informs every pixel</h4><p>We build knowing what's converting, what's not, and what the audience has already seen.</p></div></div>
+          <div class="why__pt d4" data-reveal><span class="why__dot"></span><div><h4>Creative that scales with you</h4><p>Assets built for where you're going, not just where you are today.</p></div></div>
+        </div>
+      </div>
+      <div class="why__cards">
+        <div class="why__card d1" data-reveal><span class="tag">Strategy</span><h4>One Team.<br>Every Deliverable.</h4><p>Creative and strategy share the same table. No handoffs, no lost context.</p><span class="ghost">01</span></div>
+        <div class="why__card d2" data-reveal><span class="tag">Performance</span><h4>Built On<br>What's Working.</h4><p>Every project starts with real data — what's converting and what's bleeding budget.</p><span class="ghost">02</span></div>
+        <div class="why__card d3" data-reveal><span class="tag">Discovery</span><h4>The Story<br>Comes From You.</h4><p>Every engagement opens with a direct founder or CEO interview.</p><span class="ghost">03</span></div>
+        <div class="why__card d4" data-reveal><span class="tag">Results</span><h4>We Watch<br>It Perform.</h4><p>Delivery isn't the finish line. We track what lands and iterate on what matters.</p><span class="ghost">04</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="section" data-scene="stats" id="stats">
+    <div class="block">
+      <div class="stats">
+        <div class="stat" data-reveal><div class="stat__num" data-count="2.3" data-suffix="M" data-prefix="$" data-dec="1">$0M</div><div class="stat__label">Capital raised for clients</div></div>
+        <div class="stat d1" data-reveal><div class="stat__num" data-count="214" data-suffix="%" data-prefix="+">+0%</div><div class="stat__label">Peak conversion-rate lift</div></div>
+        <div class="stat d2" data-reveal><div class="stat__num" data-count="3.8" data-suffix="×" data-dec="1">0×</div><div class="stat__label">Best return on ad spend</div></div>
+        <div class="stat d3" data-reveal><div class="stat__num" data-count="2014">2014</div><div class="stat__label">Building since · Los Angeles</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section" data-scene="process" id="process">
+    <div class="block">
+      <div class="head">
+        <div data-reveal>
+          <p class="kicker">How We Work</p>
+          <h2 class="display">Four Steps.<br><em>Zero Guesswork.</em></h2>
+        </div>
+        <p class="head__meta d1" data-reveal>From founder interview to launch, the path is the same — clear, fast, and accountable to the result.</p>
+      </div>
+      <div class="proc">
+        <div class="proc__step" data-reveal><div class="proc__num"><span class="proc__dot"></span>01</div><h4>Brief &amp; Discovery</h4><p>We dig into your goals, audience, channels and what's already running before we touch a file.</p></div>
+        <div class="proc__step d1" data-reveal><div class="proc__num"><span class="proc__dot"></span>02</div><h4>Strategy &amp; Direction</h4><p>Creative direction grounded in data. Concepts that connect the design to the outcome it drives.</p></div>
+        <div class="proc__step d2" data-reveal><div class="proc__num"><span class="proc__dot"></span>03</div><h4>Design &amp; Production</h4><p>Tight timelines, no bloated revision cycles. You see real work fast and we move with feedback.</p></div>
+        <div class="proc__step d3" data-reveal><div class="proc__num"><span class="proc__dot"></span>04</div><h4>Launch &amp; Optimize</h4><p>We watch what lands, iterate what matters, and document what wins. No disappearing after delivery.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section class="section quote" data-scene="quote" id="quote">
+    <div class="block center">
+      <div class="quote__mark" data-reveal>"</div>
+      <p class="quote__text d1" data-reveal>Good creative is expensive. Bad creative costs more.</p>
+      <p class="quote__by d2" data-reveal>DNA Creative Lab — Built to Perform</p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section section--tall cta" data-scene="contact" id="contact">
+    <div class="block">
+      <p class="kicker" data-reveal style="display:inline-block;">It starts with your story</p>
+      <h2 class="cta__title d1" data-reveal>Let's Build<br>Something <em>That Performs.</em></h2>
+      <p class="body-lg d2" data-reveal style="margin-left:auto;margin-right:auto;">Every project begins the same way — a direct conversation with the person who built the business. No intake forms. No junior account managers. Just the real story, straight from the source.</p>
+      <div class="cta__points d3" data-reveal>
+        <span><i></i>Founder/CEO interview on every engagement</span>
+        <span><i></i>Strategy &amp; creative under one roof</span>
+        <span><i></i>Delivered in 1–6 weeks</span>
+      </div>
+      <button class="btn btn--lg d4" data-reveal onclick="openModal()">Book Your Interview →</button>
+    </div>
+    <div class="ghost-num" aria-hidden="true">GO</div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="section footer" data-scene="footer" id="footer">
+    <div class="footer__cta">
+      <h2 class="display display--xl" data-reveal>Built to<br><em>Perform.</em></h2>
+    </div>
+    <div class="footer__meta">
+      <span class="footer__brand">D<span>N</span>A Creative Lab</span>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="/">Digital Niche Agency ↗</a>
+        <a href="#work">Work</a>
+        <a href="#cases">Case Studies</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <a class="btn btn--sm" href="/contact">Book A Call</a>
-    </header>
+      <nav class="footer__links" aria-label="Social">
+        <a href="https://www.instagram.com/digitalnicheagency/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/digitalnicheagency" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://twitter.com/DNAgency_CA" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://www.linkedin.com/company/digital-niche-agency" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/c/DigitalNicheAgency" target="_blank" rel="noopener">YouTube</a>
+      </nav>
+      <p class="footer__legal">© 2014–2026 Digital Niche Agency · Los Angeles, CA · <a href="/terms" style="text-decoration:underline">Terms</a> · <a href="/privacy" style="text-decoration:underline">Privacy</a></p>
+    </div>
+  </footer>
 
-    <main class="svc-main" id="top" tabindex="-1">
-      <!-- HERO -->
-      <section class="svc-hero" id="hero">
-        <span class="svc-hero__ghost" aria-hidden="true">MAKE</span>
-        <div class="svc-hero__inner">
-          <p class="eyebrow" data-reveal>
-            <a class="svc-back" href="/#services"><span class="svc-back__arrow">&larr;</span> Services</a>
-            <span style="margin: 0 0.9rem; color: var(--ink-faint)">/</span>
-            Creative Studio
-          </p>
-          <h1 class="svc-hero__title">
-            <span class="line">Creative Design</span>
-            <span class="line">That Turns Vision</span>
-            <span class="line line--accent">Into Validation.</span>
-          </h1>
-          <p class="svc-hero__lede" data-reveal>
-            The right design doesn't just look good, it drives growth. We craft
-            creative that highlights your momentum, communicates value, and
-            positions your brand in the best light.
-          </p>
-          <div class="hero__actions" data-reveal style="justify-content: flex-start">
-            <a class="btn btn--lg" href="/contact">Start Your Next Creative Project</a>
-          </div>
-        </div>
-      </section>
+</main>
 
-      <!-- OVERVIEW -->
-      <section class="svc-section svc-overview" id="overview">
-        <div class="block">
-          <div class="svc-overview__grid">
-            <div class="svc-overview__head">
-              <p class="kicker">Creative Design Overview</p>
-              <h2 class="display display--sm">Seen. Understood.<br /><em>Believed.</em></h2>
-            </div>
-            <figure class="svc-overview__media" data-img>
-              <img src="/services/creative/overview.png" alt="Creative design that turns complex offerings into clear visuals" loading="lazy" />
-            </figure>
-            <div class="svc-overview__copy">
-              <p data-scroll-text>
-                A great idea isn't enough — it has to be seen, understood, and
-                believed. That's where our creative projects come in, transforming
-                complex offerings into clear and compelling visuals.
-              </p>
-              <p data-scroll-text>
-                Polished creative signals credibility, builds trust, and turns
-                audience curiosity into backers and believers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+<!-- ===== GSAP + Lenis (premium scroll / choreography) ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasGSAP = typeof gsap !== 'undefined';
+const hasLenis = typeof Lenis !== 'undefined';
 
-      <!-- SERVICE CARDS -->
-      <section class="svc-section" id="services">
-        <div class="block">
-          <p class="kicker">Creative Insights</p>
-          <h2 class="display display--sm">Design Project <em>Services</em></h2>
-          <div class="svc-cards" data-reveal>
-            <div class="scard"><span class="scard__n">01</span><p class="scard__tag">UI/UX Led Design</p><h3 class="scard__title">Landing Pages</h3><p class="scard__body">Intuitive, high-impact landing pages built to capture leads, inspire confidence, and guide users seamlessly from awareness to conversion.</p></div>
-            <div class="scard"><span class="scard__n">02</span><p class="scard__tag">Brand Decks</p><h3 class="scard__title">Pitch Deck</h3><p class="scard__body">Your deck is your virtual handshake. We design presentations that are clear, compelling, and professional — giving you the edge in fundraising conversations.</p></div>
-            <div class="scard"><span class="scard__n">03</span><p class="scard__tag">UI/UX Design</p><h3 class="scard__title">Website Design</h3><p class="scard__body">From sleek single-page sites to larger projects, we design websites that showcase credibility, scale with your business, and highlight your momentum.</p></div>
-            <div class="scard"><span class="scard__n">04</span><p class="scard__tag">Visual Story</p><h3 class="scard__title">Pitch Video</h3><p class="scard__body">From script to screen, we craft scroll-stopping pitch videos that grab attention, simplify your value, and inspire investors to lean in.</p></div>
-            <div class="scard"><span class="scard__n">05</span><p class="scard__tag">Short Form Design</p><h3 class="scard__title">Social Media</h3><p class="scard__body">Branded social visuals and short-form videos that amplify your story, fuel engagement, and keep your audience invested week after week.</p></div>
-            <div class="scard"><span class="scard__n">06</span><p class="scard__tag">Style Guides</p><h3 class="scard__title">Branding</h3><p class="scard__body">Modern, professional brand systems — from logos to full guidelines — so every touchpoint communicates trust and growth potential.</p></div>
-          </div>
-        </div>
-      </section>
+/* =======================================================================
+   AMBIENT 2D DNA STRAND — lightweight canvas (no WebGL deps)
+   A vertical double-helix + drifting dust, dim behind content.
+   ======================================================================= */
+(function ambient(){
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, dpr, t = 0, dust = [];
+  const NODES = 26, TURNS = 3.1;
 
-      <!-- CLOSING -->
-      <section class="section section--showcase section--finalcta" id="finalcta">
-        <div class="block block--center showcase">
-          <p class="kicker">Let's build your engine</p>
-          <h2 class="showcase__title">Your Business Matters.<br />Get <em>Eyes</em> On It.</h2>
-          <p class="body-lg body-lg--center">
-            Get in touch with our team to discover how DNA can propel your
-            advertising, content marketing, and outreach efforts today.
-          </p>
-          <a class="btn btn--lg" href="/contact">Let's Get Started</a>
-        </div>
-      </section>
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.width = Math.floor(innerWidth * dpr);
+    h = canvas.height = Math.floor(innerHeight * dpr);
+    canvas.style.width = innerWidth + 'px';
+    canvas.style.height = innerHeight + 'px';
+    dust = Array.from({length: 70}, () => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: (Math.random()*1.4+0.3)*dpr, s: Math.random()*0.18+0.04,
+      o: Math.random()*0.4+0.1
+    }));
+  }
+  resize();
+  addEventListener('resize', resize, {passive:true});
 
-      <footer class="section section--footer" id="footer">
-        <div class="footer__cta"><h2 class="display display--xl">Built to Scale.</h2></div>
-        <div class="footer__meta">
-          <a href="/"><img class="footer__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" /></a>
-          <nav class="footer__links" aria-label="Footer">
-            <a href="/#services">Services</a><a href="/industries">Industries</a><a href="/thought-leadership">Thought Leadership</a><a href="/contact">Contact</a>
-          </nav>
-          <div class="footer__social" aria-label="Follow us">
-            <a href="https://www.instagram.com/digitalnicheagency/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.facebook.com/digitalnicheagency" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://twitter.com/DNAgency_CA" target="_blank" rel="noopener">Twitter</a>
-            <a href="https://www.linkedin.com/company/digital-niche-agency" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://www.youtube.com/c/DigitalNicheAgency" target="_blank" rel="noopener">YouTube</a>
-          </div>
-          <p class="footer__legal">© 2014–2026 Digital Niche Agency · Los Angeles, CA · <a href="/terms">Terms &amp; Conditions</a> · <a href="/privacy">Privacy Policy</a></p>
-        </div>
-      </footer>
-    </main>
+  let spin = 0, targetSpin = 0;
+  // scroll momentum whips the strand
+  window.addEventListener('scroll', () => { targetSpin += 0.0012; }, {passive:true});
 
-    <script type="module" src="/src/service.js"></script>
-  </body>
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    // place strand on right third (so copy on the left stays clean), drifts subtly
+    const cx = w * (0.72 + Math.sin(t*0.12)*0.015);
+    const radius = Math.min(w,h) * 0.085;
+    const top = h*0.05, bottom = h*0.95, span = bottom-top;
+
+    spin += (targetSpin - spin) * 0.06;
+    targetSpin *= 0.96;
+    const phase = t*0.32 + spin*20;
+
+    // dust
+    for(const p of dust){
+      p.y -= p.s*dpr; if(p.y < 0){ p.y = h; p.x = Math.random()*w; }
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(244,241,236,${p.o*0.5})`; ctx.fill();
+    }
+
+    const strand = (off, color, glow) => {
+      ctx.beginPath();
+      for(let i=0;i<=120;i++){
+        const tt = i/120;
+        const a = tt*TURNS*Math.PI*2 + phase + off;
+        const x = cx + Math.cos(a)*radius;
+        const y = top + tt*span;
+        i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle = color; ctx.lineWidth = 1.4*dpr;
+      ctx.shadowBlur = glow*dpr; ctx.shadowColor = 'rgba(224,16,43,0.5)';
+      ctx.stroke(); ctx.shadowBlur = 0;
+    };
+    strand(0, 'rgba(120,118,118,0.32)', 0);
+    strand(Math.PI, 'rgba(120,30,40,0.4)', 4);
+
+    // rungs + nodes
+    for(let i=0;i<NODES;i++){
+      const tt = i/(NODES-1);
+      const a = tt*TURNS*Math.PI*2 + phase;
+      const y = top + tt*span;
+      const x1 = cx + Math.cos(a)*radius, x2 = cx + Math.cos(a+Math.PI)*radius;
+      const depth = (Math.sin(a)+1)/2; // 0..1 front/back
+      const accent = i%5===2;
+      ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y);
+      ctx.strokeStyle = accent ? `rgba(224,16,43,${0.18+depth*0.4})` : `rgba(180,178,168,${0.06+depth*0.14})`;
+      ctx.lineWidth = (accent?1.4:1)*dpr; ctx.stroke();
+      [[x1,a],[x2,a+Math.PI]].forEach(([nx,na])=>{
+        const d = (Math.sin(na)+1)/2;
+        const rr = (1.4 + d*2.2)*dpr;
+        ctx.beginPath(); ctx.arc(nx,y,rr,0,Math.PI*2);
+        if(accent){ ctx.fillStyle=`rgba(255,41,66,${0.5+d*0.5})`; ctx.shadowBlur=10*dpr; ctx.shadowColor='rgba(255,41,66,0.7)'; }
+        else { ctx.fillStyle=`rgba(244,241,236,${0.18+d*0.5})`; ctx.shadowBlur=0; }
+        ctx.fill(); ctx.shadowBlur=0;
+      });
+    }
+    t += 0.016;
+    requestAnimationFrame(draw);
+  }
+  if(reduceMotion){
+    // one static frame — no animation loop
+    ctx.clearRect(0,0,w,h);
+    const cx = w*0.72, radius=Math.min(w,h)*0.085, top=h*0.05, span=h*0.9;
+    for(let s=0;s<2;s++){
+      ctx.beginPath();
+      for(let i=0;i<=120;i++){ const tt=i/120, a=tt*TURNS*Math.PI*2+s*Math.PI; const x=cx+Math.cos(a)*radius, y=top+tt*span; i===0?ctx.moveTo(x,y):ctx.lineTo(x,y); }
+      ctx.strokeStyle = s ? 'rgba(120,30,40,0.4)' : 'rgba(120,118,118,0.3)';
+      ctx.lineWidth = 1.4*dpr; ctx.stroke();
+    }
+  } else {
+    draw();
+  }
+})();
+
+/* =======================================================================
+   SMOOTH SCROLL (Lenis) + GSAP wiring
+   ======================================================================= */
+let lenis = null;
+if(hasLenis && !reduceMotion){
+  lenis = new Lenis({ duration:1.15, easing:(t)=>Math.min(1,1.001-Math.pow(2,-10*t)), smoothWheel:true });
+  if(hasGSAP){
+    lenis.on('scroll', ()=>ScrollTrigger.update());
+    gsap.ticker.add((time)=>lenis.raf(time*1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+  }
+}
+if(hasGSAP) gsap.registerPlugin(ScrollTrigger);
+
+/* anchor links → lenis (or native) */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href'); if(id.length<2) return;
+    const target = document.querySelector(id); if(!target) return;
+    e.preventDefault();
+    closeModal();
+    if(lenis) lenis.scrollTo(target,{offset:0});
+    else target.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* =======================================================================
+   CHROME — progress bar, dot-nav, HUD, custom cursor
+   ======================================================================= */
+const progressWrap = document.createElement('div'); progressWrap.className='progress';
+const progressBar = document.createElement('div'); progressBar.className='progress__bar';
+progressWrap.appendChild(progressBar); document.body.appendChild(progressWrap);
+
+const SECTION_LABELS = {hero:'Start', work:'Work', reel:'Reel', cases:'Cases', services:'Services', why:'Edge', stats:'Proof', process:'Process', quote:'Ethos', contact:'Contact', footer:'End'};
+const scenes = [...document.querySelectorAll('[data-scene]')];
+const sceneOrder = scenes.map(s=>s.dataset.scene);
+
+const dotnav = document.createElement('nav'); dotnav.className='dotnav'; dotnav.setAttribute('aria-label','Section navigation');
+sceneOrder.forEach(name=>{
+  const item = document.createElement('button'); item.className='dotnav__item'; item.dataset.go=name;
+  item.innerHTML = `<span class="dotnav__label">${SECTION_LABELS[name]||name}</span><span class="dotnav__dot"></span>`;
+  item.addEventListener('click', ()=>{ const tgt=document.getElementById(name); if(tgt){ if(lenis)lenis.scrollTo(tgt,{offset:0}); else tgt.scrollIntoView({behavior:'smooth'});} });
+  dotnav.appendChild(item);
+});
+document.body.appendChild(dotnav);
+const dotItems = [...dotnav.children];
+
+const hud = document.createElement('div'); hud.className='hud';
+hud.innerHTML = `<span class="hud__idx">01</span><span class="hud__sep"></span><span class="hud__label">Start</span>`;
+document.body.appendChild(hud);
+const hudIdx = hud.querySelector('.hud__idx'), hudLabel = hud.querySelector('.hud__label');
+
+let _activeScene = null;
+function setChrome(name){
+  if(name===_activeScene) return;
+  _activeScene = name;
+  dotItems.forEach(it=>it.classList.toggle('is-active', it.dataset.go===name));
+  const i = sceneOrder.indexOf(name); if(i<0) return;
+  hudIdx.textContent = String(i+1).padStart(2,'0');
+  hudLabel.textContent = SECTION_LABELS[name]||name;
+}
+// pick the section whose box straddles the viewport centre (handles the pinned, fixed journey)
+function updateActiveScene(){
+  const mid = innerHeight/2;
+  let best = null, bestDist = Infinity;
+  for(const sec of scenes){
+    const r = sec.getBoundingClientRect();
+    if(r.top<=mid && r.bottom>=mid){ setChrome(sec.dataset.scene); return; }
+    const d = Math.min(Math.abs(r.top-mid), Math.abs(r.bottom-mid));
+    if(d<bestDist){ bestDist=d; best=sec.dataset.scene; }
+  }
+  if(best) setChrome(best);
+}
+
+/* custom cursor (desktop only) */
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.body.classList.add('has-cursor');
+  const ring=document.createElement('div'); ring.className='cursor-ring';
+  const dot=document.createElement('div'); dot.className='cursor-dot';
+  document.body.append(ring,dot);
+  let rx=innerWidth/2, ry=innerHeight/2, dx=rx, dy=ry;
+  addEventListener('mousemove', e=>{ dx=e.clientX; dy=e.clientY; dot.style.transform=`translate(${dx}px,${dy}px)`; });
+  (function loop(){ rx+=(dx-rx)*0.18; ry+=(dy-ry)*0.18; ring.style.transform=`translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button,.tile,.hthumb,.why__card,.svc').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>ring.classList.add('is-grow'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('is-grow'));
+  });
+}
+
+/* =======================================================================
+   REVEALS + scene tracking
+   ======================================================================= */
+function pageProgress(){ const max=document.documentElement.scrollHeight-innerHeight; return max>0?Math.min(1,Math.max(0,scrollY/max)):0; }
+
+if(hasGSAP && !reduceMotion){
+  // reveals
+  gsap.utils.toArray('[data-reveal]').forEach(el=>{
+    ScrollTrigger.create({ trigger:el, start:'top 86%', once:true, onEnter:()=>el.classList.add('is-in') });
+  });
+  // progress bar + scene → chrome (viewport-center scan — robust against the pinned journey)
+  ScrollTrigger.create({ start:0, end:'max', onUpdate:self=>{ progressBar.style.transform=`scaleX(${self.progress})`; updateActiveScene(); } });
+
+  // hero parallax on strip
+  gsap.to('#heroTrack', { yPercent:-8, ease:'none', scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:true }});
+
+  // HORIZONTAL CASE JOURNEY — pin + scrub translateX
+  const track = document.getElementById('journeyTrack');
+  const cases = gsap.utils.toArray('.case');
+  const bar = document.getElementById('journeyBar');
+  if(track && cases.length>1){
+    const dist = () => track.scrollWidth - innerWidth;
+    const tween = gsap.to(track, {
+      x: () => -dist(), ease:'none',
+      scrollTrigger:{
+        trigger:'#cases', start:'top top', end:()=> '+=' + (dist()*1.15),
+        pin:true, scrub:1, anticipatePin:1, invalidateOnRefresh:true,
+        onUpdate:self=>{ if(bar) bar.style.transform=`scaleX(${self.progress})`; }
+      }
+    });
+  }
+} else {
+  // reduced motion / no gsap fallback — IntersectionObserver reveals
+  const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target);} }); }, {threshold:0.12});
+  document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+  addEventListener('scroll', ()=>{ progressBar.style.transform=`scaleX(${pageProgress()})`; updateActiveScene(); }, {passive:true});
+  updateActiveScene();
+}
+
+/* =======================================================================
+   STAT COUNTERS
+   ======================================================================= */
+function animateCount(el){
+  const target = parseFloat(el.dataset.count);
+  const dec = parseInt(el.dataset.dec||'0',10);
+  const pre = el.dataset.prefix||'', suf = el.dataset.suffix||'';
+  if(reduceMotion){ el.textContent = pre+target.toFixed(dec)+suf; return; }
+  const dur = 1400, start = performance.now();
+  function step(now){
+    const p = Math.min(1,(now-start)/dur);
+    const eased = 1-Math.pow(1-p,3);
+    el.textContent = pre + (target*eased).toFixed(dec) + suf;
+    if(p<1) requestAnimationFrame(step); else el.textContent = pre+target.toFixed(dec)+suf;
+  }
+  requestAnimationFrame(step);
+}
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const obs = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ animateCount(el); obs.unobserve(el);} }); }, {threshold:0.6});
+  obs.observe(el);
+});
+
+/* =======================================================================
+   NAV auto-hide
+   ======================================================================= */
+const nav = document.getElementById('nav');
+let lastY = 0;
+function navWatch(y){ if(y>240 && y>lastY) nav.classList.add('is-hidden'); else nav.classList.remove('is-hidden'); lastY=y; }
+if(lenis) lenis.on('scroll', ({scroll})=>navWatch(scroll));
+else addEventListener('scroll', ()=>navWatch(scrollY), {passive:true});
+
+/* =======================================================================
+   INTRO PRELOADER
+   ======================================================================= */
+function buildIntro(){
+  const el = document.createElement('div'); el.className='intro';
+  el.innerHTML = `
+    <div class="intro__center">
+      <span class="intro__brand">D<span>N</span>A</span>
+      <span class="intro__sub">Creative Lab</span>
+    </div>
+    <div class="intro__foot"><span class="intro__count">00</span><span class="intro__label">Loading the work</span></div>
+    <div class="intro__track"><span class="intro__bar"></span></div>`;
+  document.body.appendChild(el); return el;
+}
+function finishIntro(){
+  document.body.classList.remove('is-intro');
+  setChrome('hero');
+  // play hero reveals
+  document.querySelectorAll('.hero [data-reveal]').forEach((el,i)=>{
+    el.style.transitionDelay = `${0.05+i*0.08}s`;
+    requestAnimationFrame(()=>el.classList.add('is-in'));
+  });
+}
+(function runIntro(){
+  if(reduceMotion || !hasGSAP){ document.body.classList.remove('is-intro'); finishIntro(); return; }
+  if(lenis) lenis.stop();
+  const intro = buildIntro();
+  const counter = intro.querySelector('.intro__count');
+  const bar = intro.querySelector('.intro__bar');
+  const prog = {p:0};
+  gsap.timeline({ onComplete:()=>intro.remove() })
+    .fromTo('.intro__brand',{opacity:0,y:26},{opacity:1,y:0,duration:0.8,ease:'power3.out'},0.15)
+    .to(prog,{p:1,duration:1.8,ease:'power2.inOut',onUpdate:()=>{ counter.textContent=String(Math.round(prog.p*100)).padStart(2,'0'); bar.style.transform=`scaleX(${prog.p})`; }},0)
+    .to('.intro__center',{opacity:0,y:-22,duration:0.5,ease:'power2.in'},1.55)
+    .add(()=>{ if(lenis) lenis.start(); finishIntro(); ScrollTrigger && ScrollTrigger.refresh(); },1.75)
+    .to(intro,{yPercent:-100,duration:0.9,ease:'power4.inOut'},1.75);
+})();
+
+/* =======================================================================
+   MODAL + FORM
+   ======================================================================= */
+function openModal(){ document.getElementById('modal').classList.add('open'); if(lenis)lenis.stop(); document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('modal').classList.remove('open'); if(lenis)lenis.start(); document.body.style.overflow=''; }
+function handleOverlayClick(e){ if(e.target===document.getElementById('modal')) closeModal(); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form=e.target, btn=form.querySelector('.form-submit');
+  btn.textContent='Sending…'; btn.style.opacity='0.7';
+  try{
+    const data=new FormData(form);
+    await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});
+    form.style.display='none';
+    document.getElementById('formSuccess').style.display='flex';
+  }catch(err){ btn.textContent='Something went wrong — try again'; btn.style.opacity='1'; }
+});
+</script>
+</body>
 </html>
