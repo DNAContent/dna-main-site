@@ -1,0 +1,17 @@
+# Netlify build + routing for the DNA site.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Pretty post URLs are pre-generated at build time as
+# dist/blog/<slug>/index.html, so static files serve first. This rewrite is a
+# fallback so a post published AFTER the last build still renders (runtime
+# fetch) until the next deploy.
+[[redirects]]
+  from = "/blog/*"
+  to = "/post.html"
+  status = 200

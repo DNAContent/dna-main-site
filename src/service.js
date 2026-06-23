@@ -204,15 +204,17 @@ ScrollTrigger.refresh();
 const blogList = document.querySelector('[data-blog-list]');
 const blogIndex = document.querySelector('[data-blog-index]');
 const blogPost = document.querySelector('[data-blog-post]');
+// pre-rendered post pages already contain the article (static gen) — no fetch
+const postPrerendered = blogPost && blogPost.hasAttribute('data-prerendered');
 
-if (blogList || blogIndex || blogPost) {
+if (blogList || blogIndex || (blogPost && !postPrerendered)) {
   const esc = (s = '') => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   import('./lib/wix.js').then(async (wix) => {
     if (!wix.wixEnabled) return; // keep placeholders until a client id is set
 
     const card = (p) => {
-      const href = `/post.html?slug=${encodeURIComponent(p.slug || '')}`;
+      const href = `/blog/${p.slug || ''}`;
       const cover = wix.coverUrl(p);
       const thumb = cover
         ? `<span class="bcard__thumb" style="background-image:url('${cover}')"></span>`
@@ -239,9 +241,11 @@ if (blogList || blogIndex || blogPost) {
       }
     }
 
-    if (blogPost) {
-      const slug = new URLSearchParams(location.search).get('slug');
-      const post = slug ? await wix.getPostBySlug(slug) : null;
+    if (blogPost && !postPrerendered) {
+      const slug =
+        (location.pathname.match(/\/blog\/([^/]+)/) || [])[1] ||
+        new URLSearchParams(location.search).get('slug');
+      const post = slug ? await wix.getPostBySlug(decodeURIComponent(slug)) : null;
       if (post) {
         document.title = `${post.title} — Digital Niche Agency`;
         const cover = wix.coverUrl(post, 1600, 900);

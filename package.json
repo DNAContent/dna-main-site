@@ -6,7 +6,8 @@
   "description": "Digital Niche Agency — premium growth marketing site with a scroll-choreographed 3D DNA helix",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/gen-blog.mjs",
+    "build:vite": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
