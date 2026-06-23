@@ -382,6 +382,14 @@
 /* ---- scroll-reading effect: words brighten as the line scrolls through ---- */
 .stw { opacity: 0.3; display: inline-block; will-change: opacity; }
 
+/* prevent the headline flash on navigation: hide split-target headings from
+   first paint until splitReveal wraps them (gated by .js so no-JS still shows) */
+.js .svc-hero__title:not(.split),
+.js .display:not(.split),
+.js .showcase__title:not(.split),
+.js .adrow__title:not(.split),
+.js .timeline__what:not(.split) { opacity: 0; }
+
 /* ---- image reveal: clip + settle on scroll-in ---- */
 [data-img] img, .adrow__img {
   transition: clip-path 1.1s var(--ease), opacity 1.1s var(--ease), transform 1.1s var(--ease);
