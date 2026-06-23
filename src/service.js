@@ -53,41 +53,63 @@ if (nav) {
 }
 
 // --------------------------------------------------- double-helix strand ----
+// A depth-shaded double helix: each turn's front face is drawn thicker, larger
+// and brighter while the back face thins and dims, and everything is painter's-
+// sorted by depth so the front genuinely overlaps the back — a 3D tube read,
+// not a flat wave.
 function buildStrand() {
   const host = document.querySelector('.svc-strand');
   if (!host) return;
-  const W = 200, H = 1000, cx = W / 2, amp = 64, turns = 6, steps = 240;
-  const a = [], b = [];
-  for (let i = 0; i <= steps; i++) {
-    const t = (i / steps) * Math.PI * 2 * turns;
+  const W = 220, H = 1000, cx = W / 2, amp = 70, turns = 6, steps = 300;
+  const TAU = Math.PI * 2;
+  const lerp = (a, b, n) => a + (b - a) * n;
+  const sx = (t) => cx + Math.sin(t) * amp;       // screen x
+  const dz = (t) => Math.cos(t);                  // depth -1 (back) .. 1 (front)
+  const items = [];
+
+  // a rail as depth-shaded short segments
+  const rail = (phase, rgb, maxW, maxO) => {
+    for (let i = 0; i < steps; i++) {
+      const t0 = (i / steps) * TAU * turns + phase;
+      const t1 = ((i + 1) / steps) * TAU * turns + phase;
+      const y0 = (i / steps) * H, y1 = ((i + 1) / steps) * H;
+      const n = (((dz(t0) + dz(t1)) / 2) + 1) / 2; // 0 back .. 1 front
+      items.push({
+        z: (dz(t0) + dz(t1)) / 2,
+        s: `<line x1="${sx(t0).toFixed(1)}" y1="${y0.toFixed(1)}" x2="${sx(t1).toFixed(1)}" y2="${y1.toFixed(1)}" ` +
+           `stroke="rgba(${rgb},${lerp(0.08, maxO, n).toFixed(2)})" stroke-width="${lerp(0.7, maxW, n).toFixed(2)}" stroke-linecap="round"/>`,
+      });
+    }
+  };
+  rail(0, '224,16,43', 3.6, 1);          // crimson strand
+  rail(Math.PI, '244,241,236', 3.0, 0.65); // bone strand
+
+  // base-pair rungs + accent nodes, depth-shaded
+  for (let i = 0; i <= steps; i += 7) {
+    const t = (i / steps) * TAU * turns;
     const y = (i / steps) * H;
-    a.push(`${(cx + Math.sin(t) * amp).toFixed(1)},${y.toFixed(1)}`);
-    b.push(`${(cx + Math.sin(t + Math.PI) * amp).toFixed(1)},${y.toFixed(1)}`);
+    const xA = sx(t), xB = sx(t + Math.PI);
+    const nFront = (Math.max(dz(t), dz(t + Math.PI)) + 1) / 2;
+    items.push({
+      z: Math.min(dz(t), dz(t + Math.PI)),
+      s: `<line x1="${xA.toFixed(1)}" y1="${y.toFixed(1)}" x2="${xB.toFixed(1)}" y2="${y.toFixed(1)}" ` +
+         `stroke="rgba(244,241,236,${lerp(0.03, 0.3, nFront).toFixed(2)})" stroke-width="${lerp(0.5, 1.4, nFront).toFixed(2)}"/>`,
+    });
+    const nA = (dz(t) + 1) / 2;
+    items.push({
+      z: dz(t),
+      s: `<circle cx="${xA.toFixed(1)}" cy="${y.toFixed(1)}" r="${lerp(1, 3.6, nA).toFixed(2)}" fill="rgba(224,16,43,${lerp(0.2, 1, nA).toFixed(2)})"/>`,
+    });
   }
-  let rungs = '';
-  for (let i = 0; i <= steps; i += 6) {
-    const t = (i / steps) * Math.PI * 2 * turns;
-    const y = (i / steps) * H;
-    const x1 = cx + Math.sin(t) * amp;
-    const x2 = cx + Math.sin(t + Math.PI) * amp;
-    const front = Math.cos(t) > 0;
-    rungs += `<line class="strand-rung" x1="${x1.toFixed(1)}" y1="${y.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y.toFixed(1)}" opacity="${front ? 0.9 : 0.3}"/>`;
-    rungs += `<circle class="strand-node" cx="${x1.toFixed(1)}" cy="${y.toFixed(1)}" r="${front ? 3 : 1.8}"/>`;
-  }
+
+  items.sort((p, q) => p.z - q.z); // far → near (painter's algorithm)
   host.innerHTML =
-    `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMin slice" aria-hidden="true">` +
-    rungs +
-    `<polyline class="strand-rail" points="${a.join(' ')}"/>` +
-    `<polyline class="strand-rail strand-rail--b" points="${b.join(' ')}"/>` +
-    `</svg>`;
+    `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMin slice" aria-hidden="true">${items.map((i) => i.s).join('')}</svg>`;
+
   if (!reduce) {
     const svg = host.querySelector('svg');
     svg.style.animation = 'strand-drift 26s linear infinite alternate';
-    // gentle parallax: the strand counter-scrolls a touch
-    gsap.to(host, {
-      yPercent: -8, ease: 'none',
-      scrollTrigger: { start: 0, end: 'max', scrub: 1 },
-    });
+    gsap.to(host, { yPercent: -8, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 1 } });
   }
 }
 buildStrand();

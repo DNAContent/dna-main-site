@@ -266,7 +266,7 @@
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 84%, transparent);
   mask-image: linear-gradient(180deg, transparent, #000 12%, #000 84%, transparent);
 }
-.svc-strand svg { width: 100%; height: 130%; display: block; }
+.svc-strand svg { width: 100%; height: 130%; display: block; filter: drop-shadow(0 0 5px rgba(224, 16, 43, 0.28)); }
 .svc-strand .strand-rail { fill: none; stroke: rgba(244, 241, 236, 0.4); stroke-width: 1.4; }
 .svc-strand .strand-rail--b { stroke: rgba(224, 16, 43, 0.7); }
 .svc-strand .strand-rung { stroke: rgba(244, 241, 236, 0.18); stroke-width: 1.2; }
