@@ -33,13 +33,25 @@
       <a class="nav__brand" href="#top" aria-label="Digital Niche Agency home">
         <img class="nav__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" />
       </a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <nav class="nav__links" aria-label="Primary">
-        <a href="#services">Services</a>
-        <a href="#overview">Industries</a>
-        <a href="#about">Thought Leadership</a>
-        <a href="#footer">Contact</a>
+        <div class="nav__item nav__item--menu">
+          <a class="nav__top" href="#services">Services <span class="nav__caret" aria-hidden="true"></span></a>
+          <div class="nav__menu">
+            <a href="/strategy">Marketing Strategy</a>
+            <a href="/advertising">Advertising</a>
+            <a href="/content-marketing">Content Marketing</a>
+            <a href="/outreach">Growth Outreach</a>
+            <a href="/creative">Creative Studio</a>
+          </div>
+        </div>
+        <a href="/industries">Industries</a>
+        <a href="/thought-leadership">Thought Leadership</a>
+        <a href="/contact">Contact</a>
       </nav>
-      <a class="btn btn--sm" href="#footer">Book A Call</a>
+      <a class="btn btn--sm" href="/contact">Book A Call</a>
     </header>
 
     <main id="top">
@@ -59,7 +71,7 @@
             The growth infrastructure scaling brands are built on.
           </p>
           <div class="hero__actions" data-reveal>
-            <a class="btn btn--lg" href="#footer">Book A Call</a>
+            <a class="btn btn--lg" href="/contact">Book A Call</a>
             <a class="btn btn--ghost btn--lg" href="#services">See the Engine</a>
           </div>
         </div>
@@ -123,47 +135,59 @@
             Messaging that connects with your community — engineered end to end.
           </p>
           <ol class="services">
-            <li class="service" data-callout="services-0">
-              <span class="service__idx">01</span>
-              <div>
-                <h3>Marketing Strategy</h3>
-                <p>Blueprint for scalable growth.</p>
-              </div>
+            <li class="service service--link" data-callout="services-0">
+              <a class="service__link" href="/strategy" aria-label="Marketing Strategy — view service">
+                <span class="service__idx">01</span>
+                <div>
+                  <h3>Marketing Strategy</h3>
+                  <p>Blueprint for scalable growth.</p>
+                </div>
+              </a>
             </li>
-            <li class="service" data-callout="services-1">
-              <span class="service__idx">02</span>
-              <div>
-                <h3>Thought Leadership</h3>
-                <p>Build authority with content marketing.</p>
-              </div>
+            <li class="service service--link" data-callout="services-1">
+              <a class="service__link" href="/thought-leadership" aria-label="Thought Leadership — view service">
+                <span class="service__idx">02</span>
+                <div>
+                  <h3>Thought Leadership</h3>
+                  <p>Build authority with content marketing.</p>
+                </div>
+              </a>
             </li>
-            <li class="service" data-callout="services-2">
-              <span class="service__idx">03</span>
-              <div>
-                <h3>Advertising</h3>
-                <p>Reach your niche with paid media.</p>
-              </div>
+            <li class="service service--link" data-callout="services-2">
+              <a class="service__link" href="/advertising" aria-label="Advertising — view service">
+                <span class="service__idx">03</span>
+                <div>
+                  <h3>Advertising</h3>
+                  <p>Reach your niche with paid media.</p>
+                </div>
+              </a>
             </li>
-            <li class="service" data-callout="services-3">
-              <span class="service__idx">04</span>
-              <div>
-                <h3>Growth Outreach</h3>
-                <p>Expand your community and reach.</p>
-              </div>
+            <li class="service service--link" data-callout="services-3">
+              <a class="service__link" href="/outreach" aria-label="Growth Outreach — view service">
+                <span class="service__idx">04</span>
+                <div>
+                  <h3>Growth Outreach</h3>
+                  <p>Expand your community and reach.</p>
+                </div>
+              </a>
             </li>
-            <li class="service" data-callout="services-4">
-              <span class="service__idx">05</span>
-              <div>
-                <h3>Creative Studio</h3>
-                <p>In-house full-stack design &amp; video.</p>
-              </div>
+            <li class="service service--link" data-callout="services-4">
+              <a class="service__link" href="/creative" aria-label="Creative Studio — view service">
+                <span class="service__idx">05</span>
+                <div>
+                  <h3>Creative Studio</h3>
+                  <p>In-house full-stack design &amp; video.</p>
+                </div>
+              </a>
             </li>
-            <li class="service" data-callout="services-5">
-              <span class="service__idx">06</span>
-              <div>
-                <h3>Media Placements</h3>
-                <p>Social proof that builds credibility.</p>
-              </div>
+            <li class="service service--link" data-callout="services-5">
+              <a class="service__link" href="/content-marketing" aria-label="Media Placements &amp; Content — view service">
+                <span class="service__idx">06</span>
+                <div>
+                  <h3>Media Placements</h3>
+                  <p>Social proof that builds credibility.</p>
+                </div>
+              </a>
             </li>
           </ol>
         </div>
@@ -178,7 +202,7 @@
           <p class="body-lg">
             Get the traffic you need to get noticed, backed, and built to last.
           </p>
-          <a class="btn btn--lg" href="#footer">Let's Get Started</a>
+          <a class="btn btn--lg" href="/contact">Let's Get Started</a>
         </div>
       </section>
 
@@ -194,7 +218,7 @@
             process. We're a team of strategists, creatives, and marketers with
             deep financial insight — working as an extension of your team.
           </p>
-          <a class="btn btn--ghost btn--lg" href="#footer">Meet the Team</a>
+          <a class="btn btn--ghost btn--lg" href="/contact">Meet the Team</a>
         </div>
       </section>
 
@@ -390,9 +414,9 @@
           <img class="footer__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" />
           <nav class="footer__links" aria-label="Footer">
             <a href="#services">Services</a>
-            <a href="#overview">Industries</a>
+            <a href="/industries">Industries</a>
             <a href="#about">Thought Leadership</a>
-            <a href="#footer">Contact</a>
+            <a href="/contact">Contact</a>
           </nav>
           <p class="footer__legal">
             © 2014–2026 Digital Niche Agency · Los Angeles, CA

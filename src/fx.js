@@ -28,7 +28,9 @@ function makeWord(text, isEm) {
 }
 
 export function splitReveal() {
-  const heads = document.querySelectorAll('.hero__title, .display, .showcase__title');
+  const heads = document.querySelectorAll(
+    '.hero__title, .display, .showcase__title, .svc-hero__title, .adrow__title, .timeline__what'
+  );
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
@@ -284,7 +286,22 @@ export async function clientMarquee() {
   ScrollTrigger.refresh();
 }
 
+// ------------------------------------------------------- mobile nav menu ----
+export function navMenu() {
+  const nav = document.getElementById('nav');
+  const toggle = nav && nav.querySelector('.nav__toggle');
+  if (!toggle) return;
+  const close = () => { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('.nav__links a').forEach((a) => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+}
+
 export function initFx() {
+  navMenu();
   splitReveal();
   ghostNumerals();
   customCursor();

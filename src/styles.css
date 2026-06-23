@@ -106,6 +106,8 @@ main { position: relative; z-index: 2; }
 }
 .display--sm { font-size: clamp(2.75rem, 6vw, 5rem); }
 .display--xl { font-size: clamp(5rem, 18vw, 16rem); }
+/* overview heading sized so "the Impossible" sits on one line in the copy column */
+.section--overview .display { font-size: clamp(3rem, 7vw, 6.6rem); }
 .display em {
   font-style: normal;
   color: var(--red);
@@ -200,9 +202,12 @@ main { position: relative; z-index: 2; }
   align-items: center;
   justify-content: space-between;
   padding: 1.3rem var(--gutter);
-  mix-blend-mode: difference;     /* nav stays legible over light blooms */
   transition: transform 0.5s var(--ease);
 }
+/* legibility over bright sections (replaces the old mix-blend-mode, which
+   also blended the dropdown panel and made it see-through) */
+.nav__links a, .nav__top, .nav__brand { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55); }
+.nav__menu a { text-shadow: none; }
 .nav.is-hidden { transform: translateY(-110%); }
 
 .nav__brand { display: flex; align-items: baseline; gap: 0.7rem; }
@@ -239,6 +244,66 @@ main { position: relative; z-index: 2; }
   transition: transform 0.4s var(--ease);
 }
 .nav__links a:hover::after { transform: scaleX(1); }
+.nav__links { align-items: center; }
+
+/* services dropdown */
+.nav__top { display: inline-flex; align-items: center; gap: 0.45rem; }
+.nav__caret {
+  width: 6px; height: 6px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg); margin-top: -3px; opacity: 0.75;
+  transition: transform 0.3s var(--ease), margin-top 0.3s var(--ease);
+}
+.nav__item--menu { position: relative; }
+.nav__item--menu:hover .nav__caret,
+.nav__item--menu:focus-within .nav__caret { transform: rotate(-135deg); margin-top: 2px; }
+.nav__menu {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  margin-top: 0.7rem;
+  min-width: 240px;
+  display: flex; flex-direction: column;
+  padding: 0.5rem;
+  background: #060607;
+  border: 1px solid rgba(244, 241, 236, 0.16);
+  border-radius: 7px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  mix-blend-mode: normal;
+  isolation: isolate;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.nav__item--menu:hover .nav__menu,
+.nav__item--menu:focus-within .nav__menu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav__menu a {
+  padding: 0.65rem 0.85rem;
+  border-radius: 4px;
+  color: rgba(244, 241, 236, 0.82);
+  white-space: nowrap;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.nav__menu a::after { display: none; }
+.nav__menu a:hover { background: rgba(224, 16, 43, 0.14); color: #fff; }
+
+/* hamburger toggle — hidden on desktop, shown on mobile */
+.nav__toggle {
+  display: none;
+  width: 30px; height: 20px;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  flex-direction: column; justify-content: space-between;
+}
+.nav__toggle span {
+  display: block; height: 2px; width: 100%;
+  background: #fff; border-radius: 2px;
+  transition: transform 0.35s var(--ease), opacity 0.2s var(--ease);
+}
+.nav.is-open .nav__toggle span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.nav.is-open .nav__toggle span:nth-child(2) { opacity: 0; }
+.nav.is-open .nav__toggle span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
 /* =========================================================================
    Section scaffolding
@@ -437,6 +502,11 @@ main { position: relative; z-index: 2; }
   transition: padding 0.4s var(--ease);
 }
 .service:last-child { border-bottom: 1px solid var(--hair); }
+/* linked service rows (lead to a dedicated service page) */
+.service__link { display: contents; }
+.service--link h3, .service--link p { cursor: pointer; }
+.service--link h3 { transition: color 0.3s var(--ease); }
+.service--link:hover h3 { color: var(--red); }
 .service__idx {
   font-family: var(--font-display);
   font-size: 1.1rem;
@@ -1076,6 +1146,37 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
    ========================================================================= */
 
 .nav__logo { height: 26px; width: auto; display: block; }
+
+/* =========================================================================
+   Cross-document page transitions (View Transitions API)
+   Supported browsers animate a branded wipe between pages; others navigate
+   instantly with no penalty. The nav logo is a shared element so it stays
+   anchored while the rest of the page wipes.
+   ========================================================================= */
+
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.55s;
+  animation-timing-function: var(--ease);
+}
+@keyframes pt-old-out {
+  to { opacity: 0; transform: translateY(-2.5%) scale(0.99); filter: blur(2px); }
+}
+@keyframes pt-new-in {
+  from { opacity: 0; clip-path: inset(100% 0 0 0); }
+  to   { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+::view-transition-old(root) { animation-name: pt-old-out; }
+::view-transition-new(root) { animation-name: pt-new-in; }
+
+.nav__logo { view-transition-name: brand-logo; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; }
+}
 .footer__logo { height: 30px; width: auto; }
 
 /* =========================================================================
@@ -1284,8 +1385,37 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
    ========================================================================= */
 
 @media (max-width: 820px) {
-  .nav__links { display: none; }
+  .nav { mix-blend-mode: normal; }
+  .nav__toggle { display: flex; }
   .nav__brandfull { display: none; }
+  .nav__links {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 5.5rem var(--gutter) 2.5rem;
+    background: rgba(9, 9, 10, 0.98);
+    border-bottom: 1px solid var(--hair);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(-110%);
+    transition: transform 0.45s var(--ease);
+    z-index: -1;
+  }
+  .nav.is-open .nav__links { transform: translateY(0); }
+  .nav__links a { font-size: 0.95rem; }
+  .nav__item--menu { width: 100%; }
+  .nav__caret { display: none; }
+  .nav__menu {
+    position: static;
+    transform: none;
+    opacity: 1; visibility: visible; pointer-events: auto;
+    min-width: 0; width: 100%;
+    margin-top: 0.9rem;
+    padding: 0 0 0 1rem;
+    background: none; border: 0; box-shadow: none;
+  }
+  .nav__menu a { padding: 0.35rem 0; font-size: 0.82rem; }
   /* callouts are a desktop split-screen device — the helix sits off-screen on
      mobile and their text already appears in the stats/services content below */
   #callout-layer { display: none; }
@@ -1335,6 +1465,11 @@ body.is-intro .dotnav, body.is-intro .hud { opacity: 0; pointer-events: none; }
   .reel__grid { grid-template-columns: 1fr; }
 
   .scroll-cue { display: none; }
+
+  /* footer: stack + wrap so the link row never clips on phones */
+  .section--footer { gap: 4rem; }
+  .footer__meta { flex-direction: column; text-align: center; gap: 1.6rem; }
+  .footer__links { flex-wrap: wrap; justify-content: center; gap: 0.9rem 1.4rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

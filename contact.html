@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Digital Niche Agency</title>
+    <meta
+      name="description"
+      content="Let's chat about your goals. Get in touch with Digital Niche Agency — Marina del Rey, CA. Office line 310.496.5880."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="svc-strand" aria-hidden="true"></div>
+    <div class="svc-wash" aria-hidden="true"></div>
+    <div id="grain" aria-hidden="true"></div>
+
+    <header class="nav" id="nav">
+      <a class="nav__brand" href="/" aria-label="Digital Niche Agency home">
+        <img class="nav__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" />
+      </a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__links" aria-label="Primary">
+        <div class="nav__item nav__item--menu">
+          <a class="nav__top" href="/#services">Services <span class="nav__caret" aria-hidden="true"></span></a>
+          <div class="nav__menu">
+            <a href="/strategy">Marketing Strategy</a>
+            <a href="/advertising">Advertising</a>
+            <a href="/content-marketing">Content Marketing</a>
+            <a href="/outreach">Growth Outreach</a>
+            <a href="/creative">Creative Studio</a>
+          </div>
+        </div>
+        <a href="/industries">Industries</a>
+        <a href="/thought-leadership">Thought Leadership</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <a class="btn btn--sm" href="/contact">Book A Call</a>
+    </header>
+
+    <main class="svc-main" id="top">
+      <section class="svc-section" id="contact" style="padding-top: 19vh">
+        <div class="block">
+          <p class="kicker">Contact Us</p>
+          <h1 class="svc-hero__title" style="font-size: clamp(3rem, 7.5vw, 7rem); max-width: none">
+            <span class="line">Let's Chat</span>
+            <span class="line line--accent">About Your Goals.</span>
+          </h1>
+          <p class="svc-hero__lede" data-reveal>
+            Big plans, rough ideas, or somewhere in between? We'd love to hear what
+            you're working on.
+          </p>
+
+          <div class="contact" data-reveal style="margin-top: 4.5rem">
+            <div class="contact__info">
+              <div class="cdetails">
+                <div class="cdetail">
+                  <p class="cdetail__label">Office Line</p>
+                  <p class="cdetail__val"><a href="tel:+13104965880">310.496.5880</a></p>
+                </div>
+                <div class="cdetail">
+                  <p class="cdetail__label">Studio</p>
+                  <p class="cdetail__val">475 Washington Blvd.<br />Marina del Rey, CA 90292</p>
+                </div>
+                <div class="cdetail">
+                  <p class="cdetail__label">Follow</p>
+                  <div class="csocials">
+                    <a href="https://www.instagram.com/digitalnicheagency" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://www.facebook.com/digitalnicheagency" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://twitter.com/DNAgency_CA" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://www.linkedin.com/company/digital-niche-agency" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://www.youtube.com/@digitalnicheagency" target="_blank" rel="noopener">YouTube</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form class="cform" id="contactForm" novalidate>
+              <div class="field">
+                <label for="fn">First name *</label>
+                <input id="fn" name="firstName" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="ln">Last name *</label>
+                <input id="ln" name="lastName" autocomplete="family-name" required />
+              </div>
+              <div class="field field--full">
+                <label for="em">Email *</label>
+                <input id="em" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="ph">Phone</label>
+                <input id="ph" name="phone" type="tel" autocomplete="tel" />
+              </div>
+              <div class="field">
+                <label for="co">Company name *</label>
+                <input id="co" name="company" autocomplete="organization" required />
+              </div>
+              <div class="field field--full">
+                <label for="msg">Message</label>
+                <textarea id="msg" name="message"></textarea>
+              </div>
+              <button class="btn btn--lg cform__submit" type="submit">Submit</button>
+              <p class="cform__note" id="formNote" role="status" hidden></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer class="section section--footer" id="footer">
+        <div class="footer__cta"><h2 class="display display--xl">Built to Scale.</h2></div>
+        <div class="footer__meta">
+          <a href="/"><img class="footer__logo" src="/dna-logo-white.avif" alt="Digital Niche Agency" /></a>
+          <nav class="footer__links" aria-label="Footer">
+            <a href="/#services">Services</a><a href="/industries">Industries</a><a href="/thought-leadership">Thought Leadership</a><a href="/contact">Contact</a>
+          </nav>
+          <p class="footer__legal">© 2014–2026 Digital Niche Agency · Los Angeles, CA</p>
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/service.js"></script>
+  </body>
+</html>
