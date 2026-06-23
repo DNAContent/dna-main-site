@@ -20,6 +20,8 @@ export default defineConfig({
         'thought-leadership': resolve(__dirname, 'thought-leadership.html'),
         industries: resolve(__dirname, 'industries.html'),
         contact: resolve(__dirname, 'contact.html'),
+        blog: resolve(__dirname, 'blog.html'),
+        post: resolve(__dirname, 'post.html'),
       },
     },
   },

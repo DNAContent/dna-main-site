@@ -197,3 +197,66 @@ if (cf) {
 // --------------------------------------------- shared microinteractions ----
 initFx();
 ScrollTrigger.refresh();
+
+// ------------------------------------------------------- Wix blog data ----
+// Only loads the Wix SDK on pages that need it; degrades to the static
+// placeholder markup when no client id is configured.
+const blogList = document.querySelector('[data-blog-list]');
+const blogIndex = document.querySelector('[data-blog-index]');
+const blogPost = document.querySelector('[data-blog-post]');
+
+if (blogList || blogIndex || blogPost) {
+  const esc = (s = '') => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  import('./lib/wix.js').then(async (wix) => {
+    if (!wix.wixEnabled) return; // keep placeholders until a client id is set
+
+    const card = (p) => {
+      const href = `/post.html?slug=${encodeURIComponent(p.slug || '')}`;
+      const cover = wix.coverUrl(p);
+      const thumb = cover
+        ? `<span class="bcard__thumb" style="background-image:url('${cover}')"></span>`
+        : `<span class="bcard__thumb"><span class="bcard__mark">DNA</span></span>`;
+      return `<a class="bcard" href="${href}">${thumb}<span class="bcard__body">` +
+        `<span class="bcard__meta">${esc(wix.formatDate(p)) || 'Article'}</span>` +
+        `<span class="bcard__title">${esc(p.title || '')}</span>` +
+        `<span class="bcard__excerpt">${esc(wix.postExcerpt(p))}</span>` +
+        `<span class="bcard__more">Read Article &rarr;</span></span></a>`;
+    };
+
+    if (blogList) {
+      const n = parseInt(blogList.dataset.blogList, 10) || 3;
+      const items = await wix.listPosts(n);
+      if (items && items.length) blogList.innerHTML = items.map(card).join('');
+    }
+
+    if (blogIndex) {
+      const items = await wix.listPosts(30);
+      if (items && items.length) {
+        blogIndex.innerHTML = items.map(card).join('');
+      } else {
+        blogIndex.innerHTML = '<p class="svc-lede"><em>No posts found.</em></p>';
+      }
+    }
+
+    if (blogPost) {
+      const slug = new URLSearchParams(location.search).get('slug');
+      const post = slug ? await wix.getPostBySlug(slug) : null;
+      if (post) {
+        document.title = `${post.title} — Digital Niche Agency`;
+        const cover = wix.coverUrl(post, 1600, 900);
+        blogPost.innerHTML =
+          `<p class="kicker">${esc(wix.formatDate(post)) || 'Article'}</p>` +
+          `<h1 class="post__title">${esc(post.title || '')}</h1>` +
+          (cover ? `<div class="post__cover"><img src="${cover}" alt="" /></div>` : '') +
+          `<div class="post__body">${wix.richContentToHtml(post)}</div>`;
+      } else {
+        blogPost.innerHTML =
+          '<p class="kicker">Not found</p><h1 class="post__title">Post Not Found</h1>' +
+          '<p class="post__body">This article may have moved. <a href="/blog.html">Back to all articles</a>.</p>';
+      }
+    }
+
+    ScrollTrigger.refresh();
+  }).catch((e) => console.warn('[wix] blog module failed to load', e));
+}
